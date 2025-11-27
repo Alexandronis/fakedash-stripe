@@ -1,0 +1,15 @@
+<svg
+    data-arrow="true"
+    aria-hidden="true"
+    width="8"
+    height="8"
+    viewBox="0 0 8 8"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <path
+        fill="rgb(108, 118, 136)"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M.606 2.334a.75.75 0 0 0-.022 1.06l2.875 3a.75.75 0 0 0 1.082 0L7.416 3.4a.75.75 0 0 0-1.082-1.038L4 4.79 1.667 2.357a.75.75 0 0 0-1.06-.022Z"
+    />
+</svg>

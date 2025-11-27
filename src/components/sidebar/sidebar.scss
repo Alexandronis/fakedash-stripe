@@ -1,0 +1,137 @@
+.sidebar {
+    border-right: 1px solid #ebeef1; // remove after next block is done
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    width: 240px;
+    .sidebar-top {
+        align-items: center;
+        display: flex;
+        height: 60px;
+        padding: 0 20px;
+        .sidebar-top-link {
+            align-items: center;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            gap: 8px;
+            margin: 0 -6px;
+            padding: 6px;
+            width: 100%;
+            &:hover {
+                background: rgb(245, 246, 248);
+            }
+            .sidebar-top-image {
+                align-items: center;
+                display: flex;
+                img {
+                    border-radius: 4px;
+                    height: 24px;
+                    width: 24px;
+                }
+            }
+            .sidebar-top-text-wrapper {
+                align-items: center;
+                display: flex;
+                justify-content: flex-start;
+                line-height: 20px;
+                width: 146px;
+                .sidebar-top-text {
+                    color: #474e5a;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    .sidebar-main {
+        height: calc(100% - 60px);
+        padding: 20px 20px 0;
+        .primary-nav {
+            align-items: normal;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            justify-content: flex-start;
+            height: 100%;
+            .menu-section {
+                .primary-nav-section-header {
+                    align-items: center;
+                    color: rgb(89, 97, 113);
+                    display: flex;
+                    font-size: 12px;
+                    font-weight: 400;
+                    height: 26px;
+                    line-height: normal;
+                    margin-left: -4px;
+                    padding-right: 4px;
+                }
+                .menu-list {
+                    align-items: stretch;
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: normal;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    .list-item {
+                        align-items: stretch;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 6px;
+                        justify-content: normal;
+                        height: 30px;
+                        position: relative;
+                        width: 100%;
+                        &:hover {
+                            &:before {
+                                background: rgb(247, 245, 253);
+                                border-radius: 6px;
+                                bottom: 0;
+                                content: '';
+                                display: block;
+                                left: -6px;
+                                position: absolute;
+                                right: -6px;
+                                top: 0;
+                                z-index: -1;
+                            }
+                        }
+                        .list-item-link {
+                            align-items: center;
+                            border-radius: 6px;
+                            color: rgb(53, 58, 68);
+                            cursor: default;
+                            display: flex;
+                            flex-direction: row;
+                            gap: 8px;
+                            justify-content: space-between;
+                            text-decoration: none;
+                            width: 100%;
+                            .item-link-wrapper {
+                                display: flex;
+                                gap: 8px;
+                                .link-text {
+                                    color: rgb(53, 58, 68);
+                                    text-overflow: ellipsis;
+                                    white-space: nowrap;
+                                }
+                            }
+                            .item-arrow {
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;
+                                margin-right: -4px;
+                                padding: 0 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
