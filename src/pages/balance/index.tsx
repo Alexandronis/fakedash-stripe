@@ -29,8 +29,59 @@ const BalancePage: React.FC = () => {
                   clipRule="evenodd"
                   d="M6.25 8A.75.75 0 0 1 7 7.25h1.25A.75.75 0 0 1 9 8v3.5a.75.75 0 0 1-1.5 0V8.75H7A.75.75 0 0 1 6.25 8Z"
                 />
-                <path d="M6.75 5a1.25 1.25 0 1 1 2.5 0 1.25 1.25 0 0 1-2.5 0Z"/>
+                <path d="M6.75 5a1.25 1.25 0 1 1 2.5 0 1.25 1.25 0 0 1-2.5 0Z" />
               </svg>
+            </div>
+            <div className="header-buttons">
+              <div className="header-buttons-inner">
+                <a className="header-button">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="button-icon"
+                  >
+                    <path d="M6.85 1a.85.85 0 1 0-1.7 0v4.15H1a.85.85 0 0 0 0 1.7h4.15V11a.85.85 0 1 0 1.7 0V6.85H11a.85.85 0 1 0 0-1.7H6.85V1Z" />
+                  </svg>
+                  <span className="button-text">Add funds</span>
+                </a>
+
+                <a className="header-button">
+                  <span className="button-text">Manage payouts</span>
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="button-icon"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M.381 3.381a.875.875 0 0 1 1.238 0L6 7.763l4.381-4.382A.875.875 0 1 1 11.62 4.62l-5 5a.875.875 0 0 1-1.238 0l-5-5a.875.875 0 0 1 0-1.238Z"
+                    ></path>
+                  </svg>
+                </a>
+
+                <a
+                  className="⚙ rs-2 rs-1 rs-0 rs-3 rs-4 rs-5 as-1i as-1j as-1k as-w as-x as-1l as-1m as-1n as-h as-1o as-1p as-1q as-1r as-1s as-1t as-1u as-1v as-1w as-36 as-gm as-gn as-go as-gp as-gq as-3t as-gr as-gs as-gt as-gu as-gv as-gw as-gx as-gy as-gz as-h0 as-h1 as-h2 as-h3 as-h4 as-h5 as-h6 as-h7 as-h8 ⚙1orjo2k"
+                  style={{ userSelect: 'none', display: 'none' }}
+                >
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="⚙ as-x as-y as-z as-10 as-42 as-43 as-44 ⚙1q2p59a"
+                  >
+                    <path d="M6 7.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Zm4.5 0a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Zm-9 0a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
