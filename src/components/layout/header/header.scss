@@ -1,0 +1,146 @@
+.header-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 60px;
+    left: 0;
+    right: 0;
+    padding: 0 15px 0 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    .header-inner-wrapper {
+        margin: 0 auto;
+        max-width: 1600px;
+        padding: 0 40px 0 280px;
+        width: 100%;
+        #chrome-header-toolbar {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            justify-content: space-between;
+            .search-wrapper {
+                max-width: 564px;
+                position: relative;
+                .search-wrapper-inner {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row;
+                    .search-wrapper-inner-small {
+                        align-items: center;
+                        background: rgb(245, 246, 248);
+                        border-radius: 6px;
+                        display: flex;
+                        flex-grow: 1;
+                        flex-shrink: 0;
+                        flex-basis: 0;
+
+                        cursor: text;
+                        height: 36px;
+                        box-shadow: none;
+                        font-size: 14px;
+                        position: relative;
+                        .search-left {
+                            align-items: center;
+                            display: flex;
+                            position: absolute;
+                            top: 5px;
+                            bottom: 6px;
+                            left: 12px;
+                            right: 4px;
+                            .search-left-icon {
+                                display: flex;
+                                width: 20px;
+                                min-width: 20px;
+                                svg {
+                                    display: block;
+                                    fill: rgb(108, 118, 136);
+                                    height: 12px;
+                                    width: 12px;
+                                }
+                            }
+                            .search-left-text {
+                                display: flex;
+                                flex-direction: row;
+                                font-size: 14px;
+                                overflow: hidden;
+                                #text_search {
+                                    color: rgb(89, 97, 113);
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    margin-top: 1.6px;
+                                    white-space: pre;
+                                }
+                            }
+                        }
+                        .search-right {
+                            position: relative;
+                            width: 564px;
+                            .search-input {
+                                color: rgb(53, 58, 68);
+                                padding: 10px 32px;
+                                background-color: #0000;
+                                border: 0;
+                                font-size: 14px;
+                                left: 0;
+                                line-height: normal;
+                                outline: 0;
+                                position: relative;
+                                top: 0;
+                                width: 100%;
+                                z-index: 1;
+                            }
+                            .search-line {
+                                align-items: center;
+                                color: rgb(65, 69, 82);
+                                display: flex;
+                                font-size: 14px;
+                                height: 37px;
+                                justify-content: normal;
+                                line-height: normal;
+                                position: absolute;
+                                right: 8px;
+                                top: 0;
+                                .search-line-inner {
+                                    background: rgb(235, 238, 241);
+                                    border-radius: 4px;
+                                    color: rgb(108, 118, 136);
+                                    height: 20px;
+                                    margin-left: 8px;
+                                    min-width: 20px;
+                                    opacity: 0;
+                                    text-align: center;
+                                    transition: opacity .1s ease-out;
+                                    user-select: none;
+                                    width: 20px;
+                                    .search-line-text {
+                                        color: rgb(65, 69, 82);
+                                        font-weight: 700;
+                                        kbd {
+                                            font-size: 13px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                &:hover, &:focus-within {
+                    .search-wrapper-inner {
+                        .search-wrapper-inner-small {
+                            .search-right {
+                                .search-line {
+                                    .search-line-inner {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
