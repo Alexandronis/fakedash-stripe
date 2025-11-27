@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import HomeIcon from '../../assets/home.svg';
 import HomeIconActive from '../../assets/home-active.svg';
 import BalancesIcon from '../../assets/balances.svg';
@@ -15,8 +16,9 @@ import MoreIcon from '../../assets/more.svg';
 import './sidebar.scss';
 
 const Sidebar: React.FC = () => {
-  const [activeId, setActiveId] = useState<string>('home');
-  const activatableIds = ['home', 'balances'];
+  const location = useLocation();
+  const current = location.pathname.replace('/', '');
+  const activatableIds = ['dashboard', 'balance/overview'];
 
   return (
     <aside className="sidebar">
@@ -45,37 +47,32 @@ const Sidebar: React.FC = () => {
           <section id="core-nav" className="menu-section">
             <ul className="menu-list">
               {[
-                {id: 'home', label: 'Home', icon: HomeIcon, iconActive: HomeIconActive},
-                {id: 'balances', label: 'Balances', icon: BalancesIcon, iconActive: BalancesIconActive},
+                {id: 'dashboard', label: 'Home', icon: HomeIcon, iconActive: HomeIconActive},
+                {id: 'balance/overview', label: 'Balances', icon: BalancesIcon, iconActive: BalancesIconActive},
                 {id: 'transactions', label: 'Transactions', icon: TransactionsIcon, iconActive: HomeIconActive},
                 {id: 'customers', label: 'Customers', icon: CustomersIcon, iconActive: HomeIconActive},
                 {id: 'product_catalog', label: 'Product catalog', icon: ProductCatalogIcon, iconActive: HomeIconActive},
               ].map((item) => (
                 <li
-                  className={`list-item ${activeId === item.id ? 'active' : ''}`}
-                  key={item.id}
-                >
-                  <a
-                    href="#"
+                  className={`list-item ${activatableIds.includes(item.id) && current === item.id ? 'active' : ''}`}>
+                  <NavLink
+                    to={`/${item.id}`}
                     className="list-item-link"
                     onClick={(e) => {
-                      e.preventDefault();
-                      if (activatableIds.includes(item.id)) {
-                        setActiveId(item.id);
-                      }
+                      if (!activatableIds.includes(item.id)) e.preventDefault();
                     }}
                   >
                     <span className="item-link-wrapper">
                       <span className="icon-wrapper">
-                        <img src={item.id === activeId ? item.iconActive : item.icon} alt="Link"/>
+                        <img src={activatableIds.includes(item.id) && current === item.id ? item.iconActive : item.icon} alt="Link"/>
                       </span>
                       <span className="link-text" id={item.id ? `text_${item.id}` : undefined}>
                         {item.label}
                       </span>
                     </span>
-                  </a>
+                    </NavLink>
                 </li>
-              ))}
+                ))}
             </ul>
           </section>
 
@@ -83,7 +80,7 @@ const Sidebar: React.FC = () => {
           <section id="workloads-nav" className="menu-section">
             <div className="primary-nav-section-header">Shortcuts</div>
             <ul className="menu-list">
-              {[
+            {[
                 {id: 'payment_links', label: 'Payment Links'},
                 {id: 'tax', label: 'Tax'},
                 {id: 'billing_overview', label: 'Billing Overview'},
