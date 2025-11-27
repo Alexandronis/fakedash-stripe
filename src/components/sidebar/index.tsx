@@ -45,7 +45,7 @@ const Sidebar: React.FC = () => {
                 {id: 'transactions', label: 'Transactions', icon: TransactionsIcon},
                 {id: 'customers', label: 'Customers', icon: CustomersIcon},
                 {id: 'product_catalog', label: 'Product catalog', icon: ProductCatalogIcon},
-              ].map((item, idx) => (
+              ].map((item) => (
                 <li className="list-item" key={item.id || item.label}>
                   <a
                     href="#"
@@ -75,7 +75,7 @@ const Sidebar: React.FC = () => {
                 {id: 'billing_overview', label: 'Billing Overview'},
                 {id: 'disputes', label: 'Disputes'},
                 {id: 'subscriptions', label: 'Subscriptions'},
-              ].map((item, idx) => (
+              ].map((item) => (
                 <li className="list-item" key={item.id || item.label}>
                   <a
                     href="#"
@@ -104,7 +104,7 @@ const Sidebar: React.FC = () => {
                 {id: 'billing', label: 'Billing', icon: BillingIcon},
                 {id: 'reporting', label: 'Reporting', icon: ReportingIcon},
                 {id: 'More', label: 'More', icon: MoreIcon},
-              ].map((item, idx) => (
+              ].map((item) => (
                 <li className="list-item" key={item.id || item.label}>
                   <a
                     href="#"
