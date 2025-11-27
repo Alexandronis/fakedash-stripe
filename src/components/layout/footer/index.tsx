@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './footer.scss';
 
-const Footer: FC = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="sticky-footer">
       <div
