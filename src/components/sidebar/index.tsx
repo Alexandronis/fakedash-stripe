@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
           <div className="sidebar-top-image">
             <img
               id="avatarImage"
-              src="/public/avatar.jpeg"
+              src="/avatar.jpeg"
               alt="Z"
             />
           </div>
