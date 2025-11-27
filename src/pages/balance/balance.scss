@@ -6,6 +6,8 @@
     .content-wrapper {
         margin-bottom: 90px;
         padding-top: 8px;
+        position: relative;
+        z-index: 1;
         .content-inner-wrapper {
             margin: 8px auto 16px;
             .header-block {
