@@ -59,33 +59,32 @@ const Header: React.FC = () => {
           </div>
 
           {/* RIGHT ICONS */}
-          <div className="⚙ rs-0 as-w as-8a as-8b as-1m ⚙2esyh">
+          <div className="header-menu-wrapper">
             {/* Apps icon */}
-            <div className="⚙ rs-0 as-w as-1m as-dv as-dw as-dx as-dy as-dz ⚙lncmxe">
-              <a
-                data-testid="chrome-apps-menu-trigger"
-                tabIndex={1}
-                aria-label="Apps"
-                aria-expanded="false"
-                role="button"
-                className="⚙ rs-2 rs-1 rs-0 as-1i as-1j as-1k as-16 as-8c as-8d as-8e as-8f as-w as-1u as-8g as-8h as-8i as-8j as-8k as-1m as-8l as-8m as-8n as-5d as-5e as-8o ⚙1aavg84"
-                style={{ isolation: "isolate" }}
+            <a
+              data-testid="chrome-apps-menu-trigger"
+              tabIndex={1}
+              aria-label="Apps"
+              aria-expanded="false"
+              role="button"
+              className="menu-item"
+              style={{isolation: "isolate"}}
+            >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="rgb(71, 78, 90)"
               >
-                <svg
-                  aria-hidden="true"
-                  width={16}
-                  height={16}
-                  viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="⚙ as-x as-y as-z as-10 as-8p as-5i as-5j ⚙16s0ncx"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.25 0a.75.75 0 0 1 .75.75V3h2.25a.75.75 0 0 1 0 1.5H13V7a.75.75 0 0 1-1.5 0V4.5H9A.75.75 0 0 1 9 3h2.5V.75a.75.75 0 0 1 .75-.75ZM5 2H2a.5.5 0 0 0-.5.5v3A.5.5 0 0 0 2 6h3a.5.5 0 0 0 .5-.5v-3A.5.5 0 0 0 5 2Z"
-                  />
-                </svg>
-              </a>
-            </div>
+                <path
+                  fillRule="evenodd"
+                  d="M12.25 0a.75.75 0 0 1 .75.75V3h2.25a.75.75 0 0 1 0 1.5H13V7a.75.75 0 0 1-1.5 0V4.5H9A.75.75 0 0 1 9 3h2.5V.75a.75.75 0 0 1 .75-.75ZM5 2H2a.5.5 0 0 0-.5.5v3A.5.5 0 0 0 2 6h3a.5.5 0 0 0 .5-.5v-3A.5.5 0 0 0 5 2ZM2 .5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2Zm3 10H2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5ZM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2Zm8.5 1.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm-2 .5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
 
             {/* Help icon */}
             <a
@@ -95,8 +94,8 @@ const Header: React.FC = () => {
               role="button"
               aria-haspopup="true"
               id="react-aria-help"
-              className="⚙ rs-2 rs-1 rs-0 as-1i as-1j as-1k as-16 as-8c as-8d as-8e as-8f as-w as-1u as-8g as-8h as-8i as-8j as-8k as-1m as-8l as-8m as-8n as-5d as-5e as-8o ⚙4jchy7"
-              style={{ userSelect: "none", isolation: "isolate" }}
+              className="menu-item"
+              style={{userSelect: "none", isolation: "isolate"}}
             >
               <svg
                 aria-hidden="true"
@@ -105,43 +104,48 @@ const Header: React.FC = () => {
                 viewBox="0 0 16 16"
                 xmlns="http://www.w3.org/2000/svg"
                 className="⚙ as-x as-y as-z as-10 as-8p as-5i as-5j ⚙16s0ncx"
+                fill="rgb(71, 78, 90)"
               >
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
-                  d="M6.886 4.923c-.232.25-.386.63-.386 1.122a.75.75 0 1 1-1.5 0c0-.803.254-1.57.788-2.144C6.33 3.32 7.1 3 8 3c.9 0 1.67.32 2.212.901.534.574.788 1.341.788 2.144 0 1.234-.869 1.922-1.436 2.332..."
+                  d="M6.886 4.923c-.232.25-.386.63-.386 1.122a.75.75 0 1 1-1.5 0c0-.803.254-1.57.788-2.144C6.33 3.32 7.1 3 8 3c.9 0 1.67.32 2.212.901.534.574.788 1.341.788 2.144 0 1.234-.869 1.922-1.436 2.332-.094.068-.178.127-.255.181-.19.134-.33.233-.449.343a.64.64 0 0 0-.11.121V9.5a.75.75 0 0 1-1.5 0V9c0-.563.326-.956.593-1.202.198-.183.457-.364.672-.516l.17-.121c.559-.404.815-.693.815-1.116 0-.492-.154-.872-.386-1.122C8.888 4.68 8.533 4.5 8 4.5c-.533 0-.888.18-1.114.423Z"
+                />
+                <path d="M9 12a1.001 1.001 0 0 1-2 0 1.001 1.001 0 0 1 2 0Z"/>
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M8 14.5A6.5 6.5 0 1 0 1.5 8c0 1.022.179 1.608.603 2.399.316.59.407 1.313.178 2.003l-.66 1.976 1.977-.659a2.541 2.541 0 0 1 2.004.178c.79.424 1.376.603 2.398.603ZM8 16a8 8 0 1 0-8-8c0 1.29.25 2.117.78 3.107.136.252.168.549.078.82l-.807 2.42a1 1 0 0 0-.051.315V15a1 1 0 0 0 1 1h.338a1 1 0 0 0 .316-.051l2.419-.807c.271-.09.568-.057.82.078.99.53 1.817.78 3.107.78Z"
                 />
               </svg>
             </a>
 
             {/* Notifications */}
-            <div className="db-NotificationsX-button">
-              <a
-                data-testid="chrome-notifications"
-                tabIndex={1}
-                aria-label="Notifications"
-                aria-expanded="false"
-                role="button"
-                className="⚙ rs-2 rs-1 rs-0 as-1i as-1j as-1k as-16 as-8c as-8d as-8e as-8f as-w as-1u as-8g as-8h as-8i as-8j as-8k as-1m as-8l as-8m as-8n as-5d as-5e as-8o ⚙4jchy7"
-                style={{ isolation: "isolate" }}
+            <a
+              data-testid="chrome-notifications"
+              tabIndex={1}
+              aria-label="Notifications"
+              aria-expanded="false"
+              role="button"
+              className="menu-item"
+              style={{isolation: "isolate"}}
+            >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="rgb(71, 78, 90)"
               >
-                {/* SVG preserved */}
-                <svg
-                  aria-hidden="true"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="⚙ as-x as-y as-z as-10 as-8p as-5i as-5j ⚙16s0ncx"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M5.005 13H2.79a1.792 1.792 ..."
-                  />
-                </svg>
-              </a>
-            </div>
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M5.005 13H2.79a1.792 1.792 0 0 1-1.628-2.532l.477-1.051a11.583 11.583 0 0 0 1.01-4.018l.027-.41A5.34 5.34 0 0 1 8 0a5.34 5.34 0 0 1 5.324 4.989l.027.41a11.6 11.6 0 0 0 1.01 4.018l.477 1.05A1.787 1.787 0 0 1 13.21 13h-2.215c0 1.657-1.34 3-2.995 3a2.997 2.997 0 0 1-2.995-3Zm-2.48-1.912.478-1.05a13.086 13.086 0 0 0 1.14-4.539l.027-.41A3.84 3.84 0 0 1 8 1.5a3.84 3.84 0 0 1 3.83 3.589l.027.41c.104 1.57.49 3.107 1.14 4.538l.477 1.051a.291.291 0 0 1-.264.412H2.79a.291.291 0 0 1-.264-.412ZM6.504 13a1.499 1.499 0 1 0 2.995 0H6.503Z"
+                />
+              </svg>
+              <span className="notifications-counter"/>
+            </a>
 
             {/* Settings */}
             <a
@@ -150,8 +154,8 @@ const Header: React.FC = () => {
               tabIndex={1}
               aria-label="Settings"
               aria-expanded="false"
-              className="⚙ rs-2 rs-1 rs-0 as-1i as-1j as-1k as-16 as-8c as-8d as-8e as-8f as-w as-1u as-8g as-8h as-8i as-8j as-8k as-1m as-8l as-8m as-8n as-5d as-5e as-8o ⚙4jchy7"
-              style={{ isolation: "isolate" }}
+              className="menu-item"
+              style={{isolation: "isolate"}}
             >
               <svg
                 aria-hidden="true"
@@ -160,13 +164,42 @@ const Header: React.FC = () => {
                 viewBox="0 0 16 16"
                 xmlns="http://www.w3.org/2000/svg"
                 className="⚙ as-x as-y as-z as-10 as-8p as-5i as-5j ⚙16s0ncx"
+                fill="rgb(71, 78, 90)"
               >
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
-                  d="M8 10a2 2 0 1 0 0-4 2 2..."
+                  d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 1.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M7.41 14.5h1.18l.053-.832a1.753 1.753 0 0 1 1.08-1.509 1.752 1.752 0 0 1 1.83.303l.625.552.836-.835-.552-.626a1.752 1.752 0 0 1-.303-1.83 1.753 1.753 0 0 1 1.509-1.08l.832-.052V7.409l-.832-.052a1.753 1.753 0 0 1-1.509-1.08 1.752 1.752 0 0 1 .303-1.83l.552-.625-.836-.836-.625.552a1.752 1.752 0 0 1-1.83.303 1.753 1.753 0 0 1-1.08-1.509L8.59 1.5H7.409l-.052.832a1.753 1.753 0 0 1-1.08 1.509 1.752 1.752 0 0 1-1.83-.303l-.625-.552-.836.836.552.625a1.753 1.753 0 0 1-1.205 2.91L1.5 7.41v1.182l.832.052a1.753 1.753 0 0 1 1.509 1.08 1.752 1.752 0 0 1-.303 1.83l-.552.625.836.836.625-.552a1.752 1.752 0 0 1 1.83-.303 1.753 1.753 0 0 1 1.08 1.509l.052.832Zm-2.896-.122c.064-.04.125-.085.183-.136l.742-.655a.252.252 0 0 1 .264-.042.25.25 0 0 1 .157.216l.062.989a1.34 1.34 0 0 0 .07.35c.18.526.679.9 1.26.9h1.495a1.334 1.334 0 0 0 1.331-1.25l.062-.989a.253.253 0 0 1 .157-.216.252.252 0 0 1 .263.042l.743.655a1.338 1.338 0 0 0 .297.199c.5.244 1.117.156 1.528-.256l1.057-1.057a1.334 1.334 0 0 0 .057-1.825l-.655-.742a.252.252 0 0 1-.042-.264.253.253 0 0 1 .216-.157l.989-.062a1.341 1.341 0 0 0 .35-.07c.526-.18.9-.679.9-1.26V7.252a1.334 1.334 0 0 0-1.25-1.331l-.989-.062a.253.253 0 0 1-.216-.157.252.252 0 0 1 .042-.264l.655-.742a1.34 1.34 0 0 0 .199-.297c.244-.5.156-1.117-.256-1.528l-1.057-1.057a1.334 1.334 0 0 0-1.825-.057l-.742.655a.252.252 0 0 1-.264.042.253.253 0 0 1-.157-.216l-.062-.989a1.34 1.34 0 0 0-.07-.35A1.33 1.33 0 0 0 8.749 0H7.252a1.334 1.334 0 0 0-1.331 1.25l-.062.989a.253.253 0 0 1-.157.216.252.252 0 0 1-.264-.042l-.742-.655a1.34 1.34 0 0 0-.297-.199 1.334 1.334 0 0 0-1.528.256L1.815 2.872a1.334 1.334 0 0 0-.057 1.825l.655.743c.064.072.08.174.042.263a.253.253 0 0 1-.216.157l-.989.062a1.34 1.34 0 0 0-.35.07c-.526.18-.9.679-.9 1.26v1.495a1.334 1.334 0 0 0 1.25 1.331l.989.062c.096.006.18.068.216.157a.252.252 0 0 1-.042.264l-.655.742a1.344 1.344 0 0 0-.199.297c-.244.5-.156 1.117.256 1.528l1.057 1.057a1.334 1.334 0 0 0 1.642.193Z"
                 />
               </svg>
+            </a>
+            <a
+              tabIndex="1"
+              aria-label="Create"
+              aria-expanded="false"
+              role="button"
+              aria-haspopup="true"
+              className="menu-item"
+            >
+              <div className="menu-item-add">
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#ffffff"
+                >
+                  <path
+                    d="M6.85 1a.85.85 0 1 0-1.7 0v4.15H1a.85.85 0 0 0 0 1.7h4.15V11a.85.85 0 1 0 1.7 0V6.85H11a.85.85 0 1 0 0-1.7H6.85V1Z"
+                  />
+                </svg>
+              </div>
             </a>
           </div>
         </div>
