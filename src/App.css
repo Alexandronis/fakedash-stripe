@@ -1,4 +1,8 @@
 .main-container {
+    .main-content {
+        position: relative;
+        z-index: 1;
+    }
     .main-navigation {
         left: 0;
         height: 100vh;

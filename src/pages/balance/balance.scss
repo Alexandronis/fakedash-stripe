@@ -1,0 +1,41 @@
+.balance-page {
+    margin: 60px auto 0;
+    padding: 0 40px 0 272px;
+    .content-wrapper {
+        margin-bottom: 90px;
+        padding-top: 8px;
+        .content-inner-wrapper {
+            margin: 8px auto 16px;
+            .header-block {
+                .header-block-inner {
+                    align-items: baseline;
+                    align-self: center;
+                    display: flex;
+                    flex-basis: auto;
+                    flex-direction: row;
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    font-size: 28px;
+                    gap: 8px;
+                    .main-header {
+                        color: rgb(48, 49, 61);
+                        font-size: 28px;
+                        font-weight: 600;
+                        letter-spacing: -1px;
+                        line-height: 36px;
+                        margin: 0;
+                        overflow-wrap: break-word;
+                    }
+                    .balance-amount {
+                        color: rgb(53, 58, 68);
+                        font-weight: 400;
+                        letter-spacing: 0;
+                    }
+                    .balance-icon {
+                        margin-top: -4px;
+                    }
+                }
+            }
+        }
+    }
+}
