@@ -1,3 +1,9 @@
 .main-container {
-
+    .main-content {
+        left: 0;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+    }
 }

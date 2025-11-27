@@ -1,5 +1,6 @@
 import Sidebar from './components/sidebar';
 import Footer from './components/layout/footer';
+import VerticalToggle from './components/layout/verticalToggle';
 import './App.css'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="main-container">
       <div className="main-content">
         <Sidebar />
+        <VerticalToggle />
       </div>
       <Footer />
     </div>
