@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HomeIcon from '../../assets/home.svg';
+import HomeIconActive from '../../assets/home-active.svg';
 import BalancesIcon from '../../assets/balances.svg';
+import BalancesIconActive from '../../assets/balances-active.svg';
 import TransactionsIcon from '../../assets/transactions.svg';
 import CustomersIcon from '../../assets/customers.svg';
 import ProductCatalogIcon from '../../assets/product-catalog.svg';
@@ -13,6 +15,9 @@ import MoreIcon from '../../assets/more.svg';
 import './sidebar.scss';
 
 const Sidebar: React.FC = () => {
+  const [activeId, setActiveId] = useState<string>('home');
+  const activatableIds = ['home', 'balances'];
+
   return (
     <aside className="sidebar">
       <div className="sidebar-top">
@@ -40,20 +45,29 @@ const Sidebar: React.FC = () => {
           <section id="core-nav" className="menu-section">
             <ul className="menu-list">
               {[
-                {id: 'home', label: 'Home', icon: HomeIcon},
-                {id: 'balances', label: 'Balances', icon: BalancesIcon},
-                {id: 'transactions', label: 'Transactions', icon: TransactionsIcon},
-                {id: 'customers', label: 'Customers', icon: CustomersIcon},
-                {id: 'product_catalog', label: 'Product catalog', icon: ProductCatalogIcon},
+                {id: 'home', label: 'Home', icon: HomeIcon, iconActive: HomeIconActive},
+                {id: 'balances', label: 'Balances', icon: BalancesIcon, iconActive: BalancesIconActive},
+                {id: 'transactions', label: 'Transactions', icon: TransactionsIcon, iconActive: HomeIconActive},
+                {id: 'customers', label: 'Customers', icon: CustomersIcon, iconActive: HomeIconActive},
+                {id: 'product_catalog', label: 'Product catalog', icon: ProductCatalogIcon, iconActive: HomeIconActive},
               ].map((item) => (
-                <li className="list-item" key={item.id || item.label}>
+                <li
+                  className={`list-item ${activeId === item.id ? 'active' : ''}`}
+                  key={item.id}
+                >
                   <a
                     href="#"
                     className="list-item-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (activatableIds.includes(item.id)) {
+                        setActiveId(item.id);
+                      }
+                    }}
                   >
                     <span className="item-link-wrapper">
                       <span className="icon-wrapper">
-                        <img src={item.icon} alt="Link"/>
+                        <img src={item.id === activeId ? item.iconActive : item.icon} alt="Link"/>
                       </span>
                       <span className="link-text" id={item.id ? `text_${item.id}` : undefined}>
                         {item.label}

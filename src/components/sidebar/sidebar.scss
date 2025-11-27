@@ -105,7 +105,7 @@
                             align-items: center;
                             border-radius: 6px;
                             color: rgb(53, 58, 68);
-                            cursor: default;
+                            cursor: pointer;
                             display: flex;
                             flex-direction: row;
                             gap: 8px;
@@ -127,6 +127,16 @@
                                 justify-content: center;
                                 margin-right: -4px;
                                 padding: 0 10px;
+                            }
+                        }
+                        &.active {
+                            .list-item-link {
+                                color: red;
+                                .item-link-wrapper {
+                                    .link-text {
+                                        color: rgb(103, 93, 255);
+                                    }
+                                }
                             }
                         }
                     }
