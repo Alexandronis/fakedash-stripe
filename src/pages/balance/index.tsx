@@ -84,6 +84,18 @@ const BalancePage: React.FC = () => {
               </div>
             </div>
           </div>
+          <div className="balances-content-wrapper">
+            <div className="balances-content-inner">
+              <div className="balances-left">
+                <div className="balance-summary">
+
+                </div>
+              </div>
+              <div className="balances-right">
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

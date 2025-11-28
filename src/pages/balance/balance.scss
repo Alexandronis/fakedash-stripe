@@ -73,6 +73,25 @@
                     }
                 }
             }
+            .balances-content-wrapper {
+                display: flex;
+                gap: 32px;
+                flex-direction: column;
+                .balances-content-inner {
+                    display: grid;
+                    gap: 32px;
+                    grid-template-columns: repeat(12, minmax(0px, 1fr));
+                    .balances-left {
+                        grid-column-end: span 8;
+                        .balance-summary {
+                            margin-bottom: 35px;
+                        }
+                    }
+                    .balances-right {
+                        grid-column-end: span 4;
+                    }
+                }
+            }
         }
     }
 }
