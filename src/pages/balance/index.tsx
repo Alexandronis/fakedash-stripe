@@ -136,6 +136,26 @@ const BalancePage: React.FC = () => {
                     </div>
                   </div>
                 </div>
+                <div className="recent-activity">
+                  <div className="recent-activity-header-wrapper">
+                    <h3 className="recent-activity-header">Recent activity</h3>
+                  </div>
+                  <div className="recent-activity-tabs">
+                    <nav className="recent-activity-nav">
+                      <div className="recent-activity-nav-inner">
+                        <a href="#" className="recent-activity-nav-item active" onClick={(e) => e.preventDefault()}>
+                          <span className="nav-item-text">Payouts</span>
+                        </a>
+                        <a href="#" className="recent-activity-nav-item" onClick={(e) => e.preventDefault()}>
+                          <span className="nav-item-text">Top-ups</span>
+                        </a>
+                        <a href="#" className="recent-activity-nav-item" onClick={(e) => e.preventDefault()}>
+                          <span className="nav-item-text">All activity</span>
+                        </a>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
               </div>
               <div className="balances-right">
                 <h2 className="balances-right-header">Reports</h2>
@@ -149,7 +169,8 @@ const BalancePage: React.FC = () => {
                         viewBox="0 0 16 16"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path d="M1 2a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 1 2Zm0 8a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5A.75.75 0 0 1 1 10Zm2.25-4.75a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5h-7.5ZM2.5 14a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4A.75.75 0 0 1 2.5 14Z" />
+                        <path
+                          d="M1 2a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 1 2Zm0 8a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5A.75.75 0 0 1 1 10Zm2.25-4.75a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5h-7.5ZM2.5 14a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4A.75.75 0 0 1 2.5 14Z"/>
                         <path
                           fillRule="evenodd"
                           clipRule="evenodd"
@@ -171,7 +192,8 @@ const BalancePage: React.FC = () => {
                         viewBox="0 0 16 16"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path d="M8.2 4.74a.75.75 0 0 0 1.1 1.02l1.95-2.1v10.59a.75.75 0 0 0 1.5 0V3.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L8.2 4.74Zm-3.45 7.6 1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0L.2 11.26a.747.747 0 0 1 .04-1.06.75.75 0 0 1 1.06.04l1.95 2.1V1.75a.75.75 0 0 1 1.5 0v10.59Z" />
+                        <path
+                          d="M8.2 4.74a.75.75 0 0 0 1.1 1.02l1.95-2.1v10.59a.75.75 0 0 0 1.5 0V3.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L8.2 4.74Zm-3.45 7.6 1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0L.2 11.26a.747.747 0 0 1 .04-1.06.75.75 0 0 1 1.06.04l1.95 2.1V1.75a.75.75 0 0 1 1.5 0v10.59Z"/>
                       </svg>
                     </div>
                     <div className="list-item-texts">

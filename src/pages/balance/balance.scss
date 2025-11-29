@@ -223,6 +223,75 @@
                                 }
                             }
                         }
+                        .recent-activity {
+                            .recent-activity-header-wrapper {
+                                padding-bottom: 8px;
+                                .recent-activity-header {
+                                    color: rgb(48, 49, 61);
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                    line-height: 24px;
+                                    margin: 0;
+                                }
+                            }
+                            .recent-activity-tabs {
+                                margin: 4px 0 22px;
+                                .recent-activity-nav {
+                                    border-bottom: 1px solid rgb(216, 222, 228);
+                                    position: relative;
+                                    .recent-activity-nav-inner {
+                                        align-items: baseline;
+                                        display: flex;
+                                        flex-direction: row;
+                                        gap: 24px;
+                                        justify-content: flex-start;
+                                        position: relative;
+                                        &:after {
+                                            background: rgb(103, 93, 255);
+                                            bottom: -1px;
+                                            content: '';
+                                            display: block;
+                                            height: 2px;
+                                            position: absolute;
+                                            width: 60px;
+                                        }
+                                        .recent-activity-nav-item {
+                                            box-sizing: border-box;
+                                            color: rgb(89, 97, 113);
+                                            padding: 8px 0;
+                                            position: relative;
+                                            text-decoration: none;
+                                            .nav-item-text {
+                                                color: rgb(89, 97, 113);
+                                                font-size: 14px;
+                                                font-weight: 600;
+                                                line-height: 20px;
+                                            }
+                                            &:hover {
+                                                &:after {
+                                                    background-color: rgb(245, 246, 248);
+                                                    border-radius: 8px;
+                                                    bottom: 4px;
+                                                    content: '';
+                                                    display: block;
+                                                    left: -8px;
+                                                    position: absolute;
+                                                    right: -8px;
+                                                    top: 4px;
+                                                    z-index: -1;
+                                                }
+                                            }
+                                            &.active {
+                                                padding-bottom: 16px;
+                                                .nav-item-text {
+                                                    color: #533afd;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     .balances-right {
                         grid-column-end: span 4;
