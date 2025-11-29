@@ -155,6 +155,14 @@ const BalancePage: React.FC = () => {
                       </div>
                     </nav>
                   </div>
+                  <div className="recent-activity-content">
+                    <div className="recent-activity-table">
+                      
+                    </div>
+                    <a href="#" className="recent-activity-more" onClick={(e) => e.preventDefault()}>
+                      View more
+                    </a>
+                  </div>
                 </div>
               </div>
               <div className="balances-right">
