@@ -144,7 +144,7 @@ const BalanceTable: React.FC = () => {
           </div>
         </td>
       </tr>
-      <tr>
+      <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">$27,879.75</div>
         </td>
@@ -166,7 +166,7 @@ const BalanceTable: React.FC = () => {
           </div>
         </td>
       </tr>
-      <tr>
+      <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">$29,828.76</div>
         </td>
@@ -188,7 +188,7 @@ const BalanceTable: React.FC = () => {
           </div>
         </td>
       </tr>
-      <tr>
+      <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">$23,833.33</div>
         </td>
@@ -210,7 +210,7 @@ const BalanceTable: React.FC = () => {
           </div>
         </td>
       </tr>
-      <tr>
+      <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">$10,793.76</div>
         </td>
@@ -232,7 +232,7 @@ const BalanceTable: React.FC = () => {
           </div>
         </td>
       </tr>
-      <tr>
+      <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">$6,598.92</div>
         </td>

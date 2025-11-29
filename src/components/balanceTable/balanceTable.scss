@@ -54,6 +54,12 @@
     tbody {
         tr {
             height: 37px;
+            &.clickable {
+                cursor: pointer;
+                &:hover {
+                    background: rgb(245, 246, 248);
+                }
+            }
             td {
                 padding: 0;
                 vertical-align: top;
