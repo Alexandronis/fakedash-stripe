@@ -1,0 +1,131 @@
+.balance-table-wrapper {
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    color: rgb(53, 58, 68);
+    font-size: 14px;
+    height: 332px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    max-width: 100%;
+    width: 100%;
+    thead {
+        border-bottom: 1px solid rgb(216, 222, 228);
+        tr {
+            th {
+                padding: 0;
+                text-align: right;
+                vertical-align: top;
+                white-space: nowrap;
+                .th-header-text {
+                    color: rgb(53, 58, 68);
+                    font-size: 12px;
+                    font-weight: 700;
+                    line-height: 20px;
+                    min-height: 20px;
+                    padding: 8px 12px;
+                }
+                &.th-general {
+                    .th-header-text {
+                        border-left: 2px solid rgba(0, 0, 0, 0);
+                        padding: 8px 12px 8px 4px;
+                    }
+                }
+                &.th-hidden {
+                    .th-header-text {
+                        padding: 8px 24px 8px 0;
+                    }
+                }
+                &.th-center {
+                    text-align: left;
+                    .th-header-text {
+                        padding: 8px 24px 8px 0;
+                    }
+                }
+                &.th-last {
+                    text-align: right;
+                    .th-header-text {
+                        padding: 8px 4px 8px 0;
+                    }
+                }
+            }
+        }
+    }
+    tbody {
+        tr {
+            height: 37px;
+            td {
+                padding: 0;
+                vertical-align: top;
+                &.td-first {
+                    text-align: right;
+                    width: 100px;
+                    .cell-text {
+                        border-left: 2px solid #fff;
+                        color: rgb(53, 58, 68);
+                        font-size: 14px;
+                        font-weight: 600;
+                        padding: 8px 12px 8px 4px;
+                    }
+                }
+                &.td-second {
+                    text-align: left;
+                    width: 111px;
+                    .cell-text {
+                        padding: 8px 24px 8px 0;
+                        .cell-text-inner {
+                            align-items: center;
+                            background: rgb(245, 245, 252);
+                            border: 1px solid rgb(216, 222, 228);
+                            border-radius: 4px;
+                            display: inline-flex;
+                            gap: 4px;
+                            justify-content: normal;
+                            padding: 1px 6px;
+                            .cell-text-badge {
+                                color: rgb(89, 97, 113);
+                                font-size: 12px;
+                                font-weight: 400;
+                                line-height: 16px;
+                            }
+                            &.paid {
+                                background: rgb(231, 252, 221);
+                                border-color: rgb(168, 241, 112);
+                                .cell-text-badge {
+                                    color: rgb(33, 112, 5);
+                                }
+                            }
+                        }
+                    }
+                }
+                &.td-third {
+                    text-align: left;
+                    .cell-text {
+                        padding: 8px 24px 8px 0;
+                        .cell-text-badge {
+                            color: rgb(89, 97, 113);
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 20px;
+                        }
+                    }
+                }
+                &.td-fourth {
+                    text-align: right;
+                    .cell-text {
+                        padding: 8px 4px 8px 0;
+                        .cell-text-badge {
+                            color: rgb(89, 97, 113);
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 20px;
+                        }
+                    }
+                }
+            }
+        }
+        th, td {
+            border-bottom: 1px solid rgb(216, 222, 228);
+        }
+    }
+}
