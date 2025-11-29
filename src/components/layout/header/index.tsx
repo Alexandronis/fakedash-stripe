@@ -179,7 +179,7 @@ const Header: React.FC = () => {
               </svg>
             </a>
             <a
-              tabIndex="1"
+              tabIndex={1}
               aria-label="Create"
               aria-expanded="false"
               role="button"
