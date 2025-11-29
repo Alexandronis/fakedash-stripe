@@ -25,7 +25,6 @@
                         color: rgb(48, 49, 61);
                         font-size: 28px;
                         font-weight: 600;
-                        letter-spacing: -1px;
                         line-height: 36px;
                         margin: 0;
                         overflow-wrap: break-word;
@@ -85,10 +84,213 @@
                         grid-column-end: span 8;
                         .balance-summary {
                             margin-bottom: 35px;
+                            .balance-summary-inner {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 8px;
+                                justify-content: flex-start;
+                                .balance-summary-title {
+                                    align-items: center;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    min-height: 32px;
+                                    #text_balance_summary {
+                                        color: rgb(33, 37, 44);
+                                        font-size: 16px;
+                                        font-weight: 700;
+                                        line-height: 24px;
+                                    }
+                                }
+                                .balance-summary-data {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 8px;
+                                    position: relative;
+                                    .balance-summary-data-inner {
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: 13px;
+                                        justify-content: normal;
+                                        .balance-summary-data-line {
+                                            align-items: stretch;
+                                            display: flex;
+                                            flex-direction: row;
+                                            width: 100%;
+                                            .balance-summary-data-line-link {
+                                                background: rgb(182, 192, 205);
+                                                border-radius: 4px;
+                                                display: inline-flex;
+                                                flex-basis: 100%;
+                                                height: 16px;
+                                                margin: 0;
+                                                isolation: isolate;
+                                                &#percent_avaiable {
+                                                    background: rgb(153, 102, 255);
+                                                    flex-basis: 0;
+                                                }
+                                                &:hover {
+                                                    opacity: 0.8;
+                                                }
+                                            }
+                                        }
+                                        .balance-summary-data-list {
+                                            margin-top: -16px;
+                                            .balance-summary-data-list-top {
+                                                padding: 8px 0;
+                                                .balance-summary-data-list-top-wrapper {
+                                                    align-items: baseline;
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    #text_payments_type, #text_amount {
+                                                        color: rgb(53, 58, 68);
+                                                        display: block;
+                                                        font-size: 12px;
+                                                        font-weight: 600;
+                                                        line-height: 20px;
+                                                        padding: 2px 0;
+                                                    }
+                                                    #text_amount {
+                                                        color: rgb(89, 97, 113);
+                                                    }
+                                                }
+                                            }
+                                            .data-list-item {
+                                                align-items: baseline;
+                                                border-top: 1px solid rgb(235, 238, 241);
+                                                display: flex;
+                                                flex-direction: row;
+                                                justify-content: space-between;
+                                                padding: 8px 0;
+                                                position: relative;
+                                                &:hover {
+                                                    border-top-color: transparent;
+                                                    &:before {
+                                                        background: rgb(245, 246, 248);
+                                                        border-radius: 8px;
+                                                        bottom: 0;
+                                                        content: '';
+                                                        display: block;
+                                                        left: -8px;
+                                                        position: absolute;
+                                                        right: -8px;
+                                                        top: 0;
+                                                        z-index: -1;
+                                                    }
+                                                }
+                                                .list-item-left {
+                                                    align-items: center;
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                    gap: 8px;
+                                                    justify-content: normal;
+                                                    padding: 2px 0;
+                                                    .list-item-square {
+                                                        background: rgb(182, 192, 205);
+                                                        border-radius: 4px;
+                                                        height: 12px;
+                                                        line-height: 20px;
+                                                        width: 12px;
+                                                    }
+                                                    .list-item-text {
+                                                        color: rgb(53, 58, 68);
+                                                        font-size: 14px;
+                                                        font-weight: 600;
+                                                        line-height: 20px;
+                                                    }
+                                                }
+                                                .list-item-right {
+                                                    .list-item-text {
+                                                        color: rgb(53, 58, 68);
+                                                        font-size: 14px;
+                                                        font-weight: 600;
+                                                        line-height: 20px;
+                                                    }
+                                                }
+                                                &.data-list-item-available {
+                                                    border-bottom: 1px solid rgb(235, 238, 241);
+                                                    &:hover {
+                                                        border-bottom-color: transparent;
+                                                    }
+                                                    .list-item-left {
+                                                        .list-item-square {
+                                                            background: rgb(153, 102, 255);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     .balances-right {
                         grid-column-end: span 4;
+                        margin-bottom: 32px;
+                        .balances-right-header {
+                            color: rgb(48, 49, 61);
+                            font-size: 16px;
+                            font-weight: 700;
+                            line-height: 24px;
+                            margin: 0 0 16px;
+                        }
+                        .balances-right-list {
+                            align-items: normal;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 16px;
+                            justify-content: flex-start;
+                            .balances-right-list-item {
+                                align-items: center;
+                                display: flex;
+                                flex-direction: row;
+                                gap: 12px;
+                                justify-content: flex-start;
+                                text-decoration: none;
+                                .list-item-icon {
+                                    align-items: center;
+                                    background: rgb(245, 246, 248);
+                                    border-radius: 8px;
+                                    display: flex;
+                                    justify-content: center;
+                                    height: 44px;
+                                    width: 44px;
+                                    svg {
+                                        fill: rgb(129, 141, 160);
+                                    }
+                                    &:hover {
+                                        svg {
+                                            fill: rgb(103, 93, 255);
+                                        }
+                                    }
+                                }
+                                .list-item-texts {
+                                    align-items: flex-start;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    .list-item-title {
+                                        color: rgb(53, 58, 68);
+                                        font-size: 14px;
+                                        font-weight: 600;
+                                        line-height: 20px;
+                                    }
+                                    .list-item-date {
+                                        color: rgb(89, 97, 113);
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                    }
+                                }
+                                &:hover {
+                                    .list-item-texts {
+                                        .list-item-title {
+                                            color: rgb(83, 58, 253);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

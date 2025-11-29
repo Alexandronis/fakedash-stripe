@@ -88,11 +88,98 @@ const BalancePage: React.FC = () => {
             <div className="balances-content-inner">
               <div className="balances-left">
                 <div className="balance-summary">
-
+                  <div className="balance-summary-inner">
+                    <div className="balance-summary-title">
+                      <span id="text_balance_summary">Balance summary</span>
+                    </div>
+                    <div className="balance-summary-data">
+                      <div className="balance-summary-data-inner">
+                        <div className="balance-summary-data-line">
+                          <a id="percent_incoming" className="balance-summary-data-line-link" />
+                          <a id="percent_avaiable" className="balance-summary-data-line-link" />
+                        </div>
+                        <div className="balance-summary-data-list">
+                          <div
+                            role="listitem"
+                            id="type_header"
+                            className="balance-summary-data-list-top"
+                          >
+                            <div className="balance-summary-data-list-top-wrapper">
+                              <span id="text_payments_type">Payments type</span>
+                              <span id="text_amount">Amount</span>
+                            </div>
+                          </div>
+                          <div className="data-list-item">
+                            <div className="list-item-left">
+                              <div className="list-item-square" />
+                              <span id="text_incoming" className="list-item-text">Incoming</span>
+                            </div>
+                            <span className="list-item-right">
+                              <span id="total_incoming" className="list-item-text">
+                                $99,934.52
+                              </span>
+                            </span>
+                          </div>
+                          <div className="data-list-item data-list-item-available">
+                            <div className="list-item-left">
+                              <div className="list-item-square"/>
+                              <span id="text_available" className="list-item-text">Available</span>
+                            </div>
+                            <span className="list-item-right">
+                              <span id="total_available" className="list-item-text">
+                                $0.00
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="balances-right">
-
+                <h2 className="balances-right-header">Reports</h2>
+                <div className="balances-right-list">
+                  <a href="#" className="balances-right-list-item" onClick={(e) => e.preventDefault()}>
+                    <div className="list-item-icon">
+                      <svg
+                        aria-hidden="true"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M1 2a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 1 2Zm0 8a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5A.75.75 0 0 1 1 10Zm2.25-4.75a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5h-7.5ZM2.5 14a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4A.75.75 0 0 1 2.5 14Z" />
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M16 11.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.5 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+                        />
+                      </svg>
+                    </div>
+                    <div className="list-item-texts">
+                      <div className="list-item-title">Balance summary</div>
+                      <div className="list-item-date">Oct 2025</div>
+                    </div>
+                  </a>
+                  <a href="#" className="balances-right-list-item" onClick={(e) => e.preventDefault()}>
+                    <div className="list-item-icon">
+                      <svg
+                        aria-hidden="true"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M8.2 4.74a.75.75 0 0 0 1.1 1.02l1.95-2.1v10.59a.75.75 0 0 0 1.5 0V3.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L8.2 4.74Zm-3.45 7.6 1.95-2.1a.75.75 0 1 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0L.2 11.26a.747.747 0 0 1 .04-1.06.75.75 0 0 1 1.06.04l1.95 2.1V1.75a.75.75 0 0 1 1.5 0v10.59Z" />
+                      </svg>
+                    </div>
+                    <div className="list-item-texts">
+                      <div className="list-item-title">Payout reconciliation</div>
+                      <div className="list-item-date">Oct 2025</div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
