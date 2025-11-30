@@ -156,12 +156,61 @@
                         }
                     }
                     .main-right {
-                        background: yellow;
                         box-sizing: border-box;
                         display: flex;
                         flex: 1 1 0;
                         flex-direction: column;
                         height: 100px;
+                        .main-right-single {
+                            box-shadow: inset 0 -1px rgb(235, 238, 241);
+                            flex: 1 1 0;
+                            padding: 0 0 35px 20px;
+                            .main-right-single-inner {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                height: 100%;
+                                .main-right-top {
+                                    display: flex;
+                                    flex-direction: row;
+                                    flex-wrap: wrap;
+                                    justify-content: space-between;
+                                    .main-right-top-text {
+                                        color: rgb(65, 69, 82);
+                                        font-size: 14px;
+                                        font-weight: 500;
+                                        line-height: 20px;
+                                    }
+                                    .main-right-top-link {
+                                        color: rgb(98, 90, 250);
+                                        font-size: 14px;
+                                        font-weight: 500;
+                                        line-height: 20px;
+                                        text-decoration: none;
+                                        &:hover {
+                                            color: rgb(26, 27, 37);
+                                        }
+                                    }
+                                }
+                                .main-right-middle {
+                                    color: rgb(26, 27, 37);
+                                    font-size: 20px;
+                                    font-weight: 400;
+                                    line-height: 28px;
+                                    margin: 8px 0 4px;
+                                }
+                                .main-right-bottom {
+                                    color: rgb(104, 115, 133);
+                                    font-size: 12px;
+                                    font-weight: 400;
+                                    line-height: 16px;
+                                }
+                            }
+                            &.bottom {
+                                box-shadow: none;
+                                padding: 20px 0 0 20px;
+                            }
+                        }
                     }
                 }
             }

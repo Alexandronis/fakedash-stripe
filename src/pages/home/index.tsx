@@ -95,7 +95,32 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="main-right">Right columns</div>
+              <div className="main-right">
+                <div className="main-right-single">
+                  <div className="main-right-single-inner">
+                    <div className="main-right-top">
+                      <div className="main-right-top-text">USD balance</div>
+                      <a className="main-right-top-link" href="#" onClick={(e) => e.preventDefault()}>
+                        View
+                      </a>
+                    </div>
+                    <div className="main-right-middle">$5,010.17</div>
+                    <div className="main-right-bottom">Estimated future payouts</div>
+                  </div>
+                </div>
+                <div className="main-right-single bottom">
+                  <div className="main-right-single-inner">
+                    <div className="main-right-top">
+                      <div className="main-right-top-text">Payouts</div>
+                      <a className="main-right-top-link" href="#" onClick={(e) => e.preventDefault()}>
+                        View
+                      </a>
+                    </div>
+                    <div className="main-right-middle">$15,559.53</div>
+                    <div className="main-right-bottom">Expected tomorrow</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
