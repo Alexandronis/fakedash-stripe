@@ -1,4 +1,6 @@
 import React from 'react';
+import HourlyGraph from '../../components/charts/hourlyGraph';
+
 import './home.scss';
 const HomePage = () => {
   return (
@@ -74,6 +76,7 @@ const HomePage = () => {
                   </div>
                   <div className="main-graph">
                     <div className="main-graph-inner">
+                      <HourlyGraph />
                       <div className="graph-bottom-text">
                         <div className="graph-bottom-text-inner">
                           <div className="graph-bottom-left">12:00 AM</div>
