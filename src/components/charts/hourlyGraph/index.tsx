@@ -54,7 +54,11 @@ const hoverDashedLinePlugin = {
 
 Chart.register(hoverDashedLinePlugin);
 
-const HourlyGraph = () => {
+interface HourlyGraphProps {
+  onHoverValueChange?: (value: number | null) => void;
+}
+
+const HourlyGraph: React.FC<HourlyGraphProps> = ({ onHoverValueChange }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const chartRef = useRef<Chart | null>(null);
 
@@ -194,6 +198,17 @@ const HourlyGraph = () => {
 
           // quick redraw (no re-layout)
           chart.draw();
+
+          // 🔥 send hovered value to parent
+          // 🔥 send hovered value and hour to parent
+          const hoveredValue =
+            hoveredIndex != null ? chart.data.datasets[0].data[hoveredIndex] : null;
+          const hoveredHour =
+            hoveredIndex != null ? chart.data.labels[hoveredIndex] : null;
+
+          if (onHoverValueChange) {
+            onHoverValueChange({ value: hoveredValue, hour: hoveredHour });
+          }
         },
       },
 
