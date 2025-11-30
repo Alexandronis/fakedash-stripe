@@ -114,8 +114,8 @@ const HourlyGraph = () => {
             tension: 0,
 
             // Line color → gray
-            borderColor: "#999999",
-            borderWidth: 2,
+            borderColor: "#c0c8d1",
+            borderWidth: 1,
 
             // Remove fill under line
             fill: false,
@@ -128,8 +128,8 @@ const HourlyGraph = () => {
             pointHitRadius: 12,
 
             // Hover circle filled gray
-            pointHoverBackgroundColor: "#999999",
-            pointHoverBorderColor: "#999999",
+            pointHoverBackgroundColor: "#c0c8d1",
+            pointHoverBorderColor: "#c0c8d1",
           },
         ],
       },
@@ -163,7 +163,7 @@ const HourlyGraph = () => {
           x: {
             grid: {
               display: true,
-              color: "#cccccc",
+              color: "#f2f3f4",
               // Hide little caps/ends
               drawBorder: false,
               drawTicks: false,
@@ -172,7 +172,7 @@ const HourlyGraph = () => {
             // Draw one bottom border line
             border: {
               display: true,
-              color: "#cccccc",
+              color: "#f2f3f4",
               width: 1,
             },
           },
