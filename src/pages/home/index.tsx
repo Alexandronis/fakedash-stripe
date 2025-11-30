@@ -244,6 +244,9 @@ const HomePage = () => {
                 </a>
               </div>
             </div>
+            <div className="home-bottom-sections">
+
+            </div>
           </div>
         </div>
       </div>
