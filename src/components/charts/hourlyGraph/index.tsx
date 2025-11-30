@@ -136,6 +136,10 @@ const HourlyGraph = () => {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',       // hover by vertical index, not just nearest point
+          intersect: false,    // hover anywhere along the vertical line
+        },
         plugins: {
           tooltip: { enabled: false },
           dragData: {
