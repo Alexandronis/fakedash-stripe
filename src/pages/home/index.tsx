@@ -123,6 +123,94 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+          <div className="home-bottom">
+            <div className="home-bottom-title-wrapper">
+              <h1 className="home-bottom-title">Your overview</h1>
+            </div>
+            <div className="home-bottom-filters-wrapper">
+              <div className="home-bottom-filters">
+                <div className="date-filter">
+                  <span className="date-filter-inner">
+                    <dl>
+                      <dt>Date range</dt>
+                      <span className="separator"/>
+                      <dd>Month to date</dd>
+                    </dl>
+                    <a className="arrow-link">
+                      <svg
+                        aria-hidden="true"
+                        width="8"
+                        height="8"
+                        viewBox="0 0 8 8"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path fillRule="evenodd" clipRule="evenodd"
+                              d="M.606 2.334a.75.75 0 0 0-.022 1.06l2.875 3a.75.75 0 0 0 1.082 0L7.416 3.4a.75.75 0 0 0-1.082-1.038L4 4.79 1.667 2.357a.75.75 0 0 0-1.06-.022Z">
+                        </path>
+                      </svg>
+                    </a>
+                  </span>
+                </div>
+                <div className="date-filter">
+                  <span className="date-filter-inner">
+                    <dl>
+                      <dd>Daily</dd>
+                    </dl>
+                    <a className="arrow-link">
+                      <svg
+                        aria-hidden="true"
+                        width="8"
+                        height="8"
+                        viewBox="0 0 8 8"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path fillRule="evenodd" clipRule="evenodd"
+                              d="M.606 2.334a.75.75 0 0 0-.022 1.06l2.875 3a.75.75 0 0 0 1.082 0L7.416 3.4a.75.75 0 0 0-1.082-1.038L4 4.79 1.667 2.357a.75.75 0 0 0-1.06-.022Z">
+                        </path>
+                      </svg>
+                    </a>
+                  </span>
+                </div>
+                <div className="date-filter compare">
+                  <span className="date-filter-inner">
+                    <a className="arrow-link">
+                      <svg
+                        aria-hidden="true"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M8.75 4.25a.75.75 0 0 0-1.5 0v3h-3a.75.75 0 0 0 0 1.5h3v3a.75.75 0 0 0 1.5 0v-3h3a.75.75 0 0 0 0-1.5h-3v-3Z" />
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M16 8a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8c4.43 0 8 3.581 8 8Zm-1.5 0A6.5 6.5 0 0 1 8 14.5 6.5 6.5 0 0 1 1.5 8 6.5 6.5 0 0 1 8 1.5c3.6 0 6.5 2.908 6.5 6.5Z"
+                        />
+                      </svg>
+                    </a>
+                    <dl>
+                      <dt>Compare</dt>
+                    </dl>
+                    <a className="arrow-link">
+                      <svg
+                        aria-hidden="true"
+                        width="8"
+                        height="8"
+                        viewBox="0 0 8 8"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path fillRule="evenodd" clipRule="evenodd"
+                              d="M.606 2.334a.75.75 0 0 0-.022 1.06l2.875 3a.75.75 0 0 0 1.082 0L7.416 3.4a.75.75 0 0 0-1.082-1.038L4 4.79 1.667 2.357a.75.75 0 0 0-1.06-.022Z">
+                        </path>
+                      </svg>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div className="home-bottom-buttons"></div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

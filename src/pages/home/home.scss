@@ -214,6 +214,92 @@
                     }
                 }
             }
+            .home-bottom {
+                margin-top: 25px;
+                .home-bottom-title-wrapper {
+                    .home-bottom-title {
+                        color: rgb(48, 49, 61);
+                        font-size: 28px;
+                        font-weight: 700;
+                        line-height: 36px;
+                        margin: 8px 0;
+                    }
+                }
+                .home-bottom-filters-wrapper {
+                    border-bottom: 1px solid rgb(216, 222, 228);
+                    margin-top: -8px;
+                    padding: 16px 0;
+                    .home-bottom-filters {
+                        align-items: center;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        gap: 6px;
+                        justify-content: flex-start;
+                        .date-filter {
+                            align-items: center;
+                            background: rgb(255, 255, 255);
+                            border: 1px solid rgb(216, 222, 228);
+                            border-radius: 10px;
+                            color: rgb(83, 58, 253);
+                            cursor: pointer;
+                            display: inline-flex;
+                            flex-direction: row-reverse;
+                            gap: 6px;
+                            padding: 3px 8px 3px 6px;
+                            &:hover {
+                                background: rgb(245, 246, 248);
+                            }
+                            .date-filter-inner {
+                                align-items: center;
+                                display: flex;
+                                flex-basis: auto;
+                                flex-direction: row;
+                                gap: 6px;
+                                justify-content: normal;
+                                dl {
+                                    display: flex;
+                                    flex-direction: row;
+                                    gap: 6px;
+                                    margin: 0;
+                                    text-overflow: ellipsis;
+                                    white-space: nowrap;
+                                    dt {
+                                        color: rgb(89, 97, 113);
+                                        display: block;
+                                        font-size: 12px;
+                                        font-weight: 600;
+                                        line-height: 16px;
+                                    }
+                                    .separator {
+                                        background: rgb(216, 222, 228);
+                                        flex: 0 0 1px;
+                                        height: 12px;
+                                        margin-top: 2px;
+                                        padding: 1px 0 0 0;
+                                    }
+                                    dd {
+                                        color: rgb(83, 58, 253);
+                                        font-size: 12px;
+                                        font-weight: 600;
+                                        line-height: 16px;
+                                        margin: 0;
+                                    }
+                                }
+                                .arrow-link {
+                                    display: flex;
+                                    svg {
+                                        fill: rgb(108, 118, 136);
+                                    }
+                                }
+                            }
+                            &.compare {
+                                border-style: dashed;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
