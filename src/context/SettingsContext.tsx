@@ -5,6 +5,8 @@ interface SettingsContextProps {
   totalEarnings: number;
   setTotalEarnings: (value: number) => void;
   tablePercentages: number[];
+  currencySign: string;
+  setCurrencySign: (value: string) => void;
 }
 
 const SettingsContext = createContext<SettingsContextProps | null>(null);
@@ -22,16 +24,23 @@ export const TABLE_PERCENTAGES = [
 
 export const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
   const [totalEarnings, setTotalEarningsState] = useState<number>(98939.52);
+  const [currencySign, setCurrencySignState] = useState<string>("$");
 
   // Load from cookies at startup
   useEffect(() => {
-    const cookieVal = document.cookie
+    const totalCookie = document.cookie
       .split("; ")
       .find((c) => c.startsWith("total_earnings="));
-
-    if (cookieVal) {
-      const parsed = parseFloat(cookieVal.split("=")[1]);
+    if (totalCookie) {
+      const parsed = parseFloat(totalCookie.split("=")[1]);
       if (!isNaN(parsed)) setTotalEarningsState(parsed);
+    }
+
+    const currencyCookie = document.cookie
+      .split("; ")
+      .find((c) => c.startsWith("currency_sign="));
+    if (currencyCookie) {
+      setCurrencySignState(currencyCookie.split("=")[1]);
     }
   }, []);
 
@@ -41,8 +50,21 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
     document.cookie = `total_earnings=${val}; path=/; max-age=31536000`; // 1 year
   };
 
+  const setCurrencySign = (val: string) => {
+    setCurrencySignState(val);
+    document.cookie = `currency_sign=${val}; path=/; max-age=31536000`; // 1 year
+  };
+
   return (
-    <SettingsContext.Provider value={{ totalEarnings, setTotalEarnings, tablePercentages: TABLE_PERCENTAGES }}>
+    <SettingsContext.Provider
+      value={{
+        totalEarnings,
+        setTotalEarnings,
+        tablePercentages: TABLE_PERCENTAGES,
+        currencySign,
+        setCurrencySign,
+      }}
+    >
       {children}
     </SettingsContext.Provider>
   );

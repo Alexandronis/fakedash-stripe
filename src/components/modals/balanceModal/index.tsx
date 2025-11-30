@@ -6,7 +6,7 @@ import "./balanceModal.scss";
 
 const BalanceModal = ({ isOpen, onClose }: any) => {
   const { i18n } = useTranslation();
-  const { totalEarnings, setTotalEarnings } = useSettings();
+  const { totalEarnings, setTotalEarnings, currencySign, setCurrencySign } = useSettings();
   const [value, setValue] = useState(totalEarnings.toFixed(2));
 
   useEffect(() => {
@@ -34,6 +34,10 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
     onClose();
   };
 
+  const handleCurrencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurrencySign(e.target.value);
+  };
+
   return ReactDOM.createPortal(
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -46,7 +50,7 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
               <label htmlFor="totalEarnings">Total Earnings</label>
 
               <div className="settings-input-wrapper">
-                <span className="settings-currency-symbol">$</span>
+                <span className="settings-currency-symbol">{currencySign}</span>
                 <input
                   type="text"
                   id="totalEarnings"
@@ -72,9 +76,13 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
 
             <div className="settings-form-group-inner">
               <label htmlFor="curr_sign">USD - AUD</label>
-              <select id="curr_sign">
-                <option value="USD">USD</option>
-                <option value="AUD">AUD</option>
+              <select
+                id="curr_sign"
+                value={currencySign}
+                onChange={handleCurrencyChange}
+              >
+                <option value="$">USD</option>
+                <option value="A$">AUD</option>
               </select>
             </div>
           </div>
