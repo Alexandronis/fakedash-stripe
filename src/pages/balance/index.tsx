@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from "react-i18next";
+import { useSettings } from "../../context/SettingsContext";
 import BalanceTable from "../../components/balanceTable";
 import './balance.scss';
 
 const BalancePage: React.FC = () => {
+  const { totalEarnings } = useSettings();
   const { i18n, t } = useTranslation();
   const language = i18n.language;
   const isFR = language === "fr";
@@ -124,7 +126,9 @@ const BalancePage: React.FC = () => {
                             </div>
                             <span className="list-item-right">
                               <span id="total_incoming" className="list-item-text">
-                                {!isFR ? t("balance_page.currency_sign") : ''}99,934.52{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+                                {!isFR ? t("balance_page.currency_sign") : ''}
+                                {totalEarnings.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                                {isFR ? ' ' + t("balance_page.currency_sign") : ''}
                               </span>
                             </span>
                           </div>

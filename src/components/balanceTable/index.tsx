@@ -1,11 +1,22 @@
 import React from 'react';
 import { useTranslation } from "react-i18next";
+import { useSettings } from "../../context/SettingsContext";
 import './balanceTable.scss';
 
 const BalanceTable: React.FC = () => {
+  const { totalEarnings, tablePercentages } = useSettings();
   const { i18n, t } = useTranslation();
   const language = i18n.language;
   const isFR = language === "fr";
+
+  const value1 = tablePercentages[0] * totalEarnings;
+  const value2 = tablePercentages[1] * totalEarnings;
+  const value3 = tablePercentages[2] * totalEarnings;
+  const value4 = tablePercentages[3] * totalEarnings;
+  const value5 = tablePercentages[4] * totalEarnings;
+  const value6 = tablePercentages[5] * totalEarnings;
+  const value7 = tablePercentages[6] * totalEarnings;
+  const value8 = tablePercentages[7] * totalEarnings;
 
   return (
     <table className="balance-table-wrapper">
@@ -29,7 +40,9 @@ const BalanceTable: React.FC = () => {
       <tr>
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}27,296.03{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value1.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">
@@ -74,7 +87,9 @@ const BalanceTable: React.FC = () => {
       <tr>
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}32,697.86{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value2.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">
@@ -119,7 +134,9 @@ const BalanceTable: React.FC = () => {
       <tr>
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}38,940.63{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value3.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">
@@ -164,7 +181,9 @@ const BalanceTable: React.FC = () => {
       <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}27,879.75{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value4.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">
@@ -190,7 +209,9 @@ const BalanceTable: React.FC = () => {
       <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}29,828.76{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value5.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">
@@ -216,7 +237,9 @@ const BalanceTable: React.FC = () => {
       <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}23,833.33{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value6.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">
@@ -242,7 +265,9 @@ const BalanceTable: React.FC = () => {
       <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}10,793.76{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value7.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">
@@ -268,7 +293,9 @@ const BalanceTable: React.FC = () => {
       <tr className="clickable">
         <td className="td-first">
           <div className="cell-text">
-            {!isFR ? t("balance_page.currency_sign") : ''}6,598.92{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+            {!isFR ? t("balance_page.currency_sign") : ''}
+            {value8.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            {isFR ? ' ' + t("balance_page.currency_sign") : ''}
           </div>
         </td>
         <td className="td-second">

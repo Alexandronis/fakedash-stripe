@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useTranslation } from "react-i18next";
+import { useSettings } from "../../../context/SettingsContext";
 import "./balanceModal.scss";
 
 const BalanceModal = ({ isOpen, onClose }: any) => {
   const { i18n } = useTranslation();
+  const { totalEarnings, setTotalEarnings } = useSettings();
+  const [value, setValue] = useState(totalEarnings.toFixed(2));
+
+  useEffect(() => {
+    if (isOpen) {
+      setValue(totalEarnings.toFixed(2));
+    }
+  }, [isOpen, totalEarnings]);
 
   if (!isOpen) return null;
 
@@ -14,12 +23,23 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
     onClose();
   };
 
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const num = parseFloat(value.replace(/,/g, ""));
+    if (!isNaN(num)) {
+      setTotalEarnings(num);
+    }
+
+    onClose();
+  };
+
   return ReactDOM.createPortal(
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <span className="modal-close" onClick={onClose}>×</span>
 
-        <form id="settingsForm">
+        <form id="settingsForm" onSubmit={handleSave}>
 
           <div className="settings-form-group">
             <div className="settings-form-group-inner">
@@ -30,7 +50,8 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
                 <input
                   type="text"
                   id="totalEarnings"
-                  defaultValue="98,934.52"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
                 />
               </div>
             </div>
