@@ -1,0 +1,51 @@
+{
+  "dashboard_menu": {
+    "home": "Accueil",
+    "balances": "Soldes",
+    "transactions": "Transactions",
+    "customers": "Clients",
+    "product_catalog": "Catalogue de produits",
+    "shortcuts": "Raccourcis",
+    "payment_links": "Payment Links",
+    "tax": "Tax",
+    "billing_overview": "Présentation de Billing",
+    "disputes": "Litiges",
+    "subscriptions": "Abonnements",
+    "products": "Products",
+    "payments": "Payments",
+    "billing": "Billing",
+    "reporting": "Reporting",
+    "more": "Plus"
+  },
+  "footer": {
+    "developers": "Développeurs"
+  },
+  "header": {
+    "search": "Rechercher"
+  },
+  "balance_page": {
+    "balances": "Soldes",
+    "currency_sign": "€",
+    "add_funds": "Ajouter des fonds",
+    "manage_payouts": "Gérer les virements",
+    "balance_summary": "Récapitulatif du solde",
+    "payments_type": "Type de paiement",
+    "amount": "Montant",
+    "incoming": "En attente",
+    "available": "Disponible",
+    "reports": "Rapports",
+    "payout_reconciliation": "Rapprochement des virements",
+    "recent_activity": "Activité récente",
+    "payouts": "Virements",
+    "top_ups": "Recharges",
+    "all_activity": "Toutes les activités",
+    "destination": "Destination",
+    "arrive_by": "Arrive au plus tard le",
+    "upcoming": "À venir",
+    "paid": "Payé",
+    "view_more": "Afficher plus",
+    "december": "déc.",
+    "november": "nov.",
+    "october": "oct."
+  }
+}

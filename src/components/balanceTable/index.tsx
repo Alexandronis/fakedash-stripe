@@ -1,34 +1,41 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
 import './balanceTable.scss';
 
 const BalanceTable: React.FC = () => {
+  const { i18n, t } = useTranslation();
+  const language = i18n.language;
+  const isFR = language === "fr";
+
   return (
     <table className="balance-table-wrapper">
       <thead>
         <tr>
           <th className="th-general">
-            <div className="th-header-text">Amount</div>
+            <div className="th-header-text">{t("balance_page.amount")}</div>
           </th>
           <th className="th-hidden">
             <div className="th-header-text">​</div>
           </th>
           <th className="th-center">
-            <div className="th-header-text">Destination</div>
+            <div className="th-header-text">{t("balance_page.destination")}</div>
           </th>
           <th className="th-last">
-            <div className="th-header-text">Arrive by</div>
+            <div className="th-header-text">{t("balance_page.arrive_by")}</div>
           </th>
         </tr>
       </thead>
       <tbody className="⚙" id="payouts_history">
       <tr>
         <td className="td-first">
-          <div className="cell-text">$27,296.03</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}27,296.03{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner">
-              <span className="cell-text-badge">Upcoming</span>
+              <span className="cell-text-badge">{t("balance_page.upcoming")}</span>
               <svg
                 aria-hidden="true"
                 width={12}
@@ -58,18 +65,22 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Dec 3</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.december") + ' ' : ''}3{isFR ? ' ' + t("balance_page.december") : ''}
+            </div>
           </div>
         </td>
       </tr>
       <tr>
         <td className="td-first">
-          <div className="cell-text">$32,697.86</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}32,697.86{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner">
-              <span className="cell-text-badge">Upcoming</span>
+              <span className="cell-text-badge">{t("balance_page.upcoming")}</span>
               <svg
                 aria-hidden="true"
                 width={12}
@@ -99,18 +110,22 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Dec 2</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.december") + ' ' : ''}2{isFR ? ' ' + t("balance_page.december") : ''}
+            </div>
           </div>
         </td>
       </tr>
       <tr>
         <td className="td-first">
-          <div className="cell-text">$38,940.63</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}38,940.63{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner">
-              <span className="cell-text-badge">Upcoming</span>
+              <span className="cell-text-badge">{t("balance_page.upcoming")}</span>
               <svg
                 aria-hidden="true"
                 width={12}
@@ -140,18 +155,22 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Dec 1</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.december") + ' ' : ''}1{isFR ? ' ' + t("balance_page.december") : ''}
+            </div>
           </div>
         </td>
       </tr>
       <tr className="clickable">
         <td className="td-first">
-          <div className="cell-text">$27,879.75</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}27,879.75{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner paid">
-              <span className="cell-text-badge">Paid</span>
+              <span className="cell-text-badge">{t("balance_page.paid")}</span>
             </div>
           </div>
         </td>
@@ -162,18 +181,22 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Nov 24</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.november") + ' ' : ''}24{isFR ? ' ' + t("balance_page.november") : ''}
+            </div>
           </div>
         </td>
       </tr>
       <tr className="clickable">
         <td className="td-first">
-          <div className="cell-text">$29,828.76</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}29,828.76{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner paid">
-              <span className="cell-text-badge">Paid</span>
+              <span className="cell-text-badge">{t("balance_page.paid")}</span>
             </div>
           </div>
         </td>
@@ -184,18 +207,22 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Nov 25</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.november") + ' ' : ''}25{isFR ? ' ' + t("balance_page.november") : ''}
+            </div>
           </div>
         </td>
       </tr>
       <tr className="clickable">
         <td className="td-first">
-          <div className="cell-text">$23,833.33</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}23,833.33{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner paid">
-              <span className="cell-text-badge">Paid</span>
+              <span className="cell-text-badge">{t("balance_page.paid")}</span>
             </div>
           </div>
         </td>
@@ -206,18 +233,22 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Nov 26</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.november") + ' ' : ''}26{isFR ? ' ' + t("balance_page.november") : ''}
+            </div>
           </div>
         </td>
       </tr>
       <tr className="clickable">
         <td className="td-first">
-          <div className="cell-text">$10,793.76</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}10,793.76{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner paid">
-              <span className="cell-text-badge">Paid</span>
+              <span className="cell-text-badge">{t("balance_page.paid")}</span>
             </div>
           </div>
         </td>
@@ -228,18 +259,22 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Nov 27</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.november") + ' ' : ''}27{isFR ? ' ' + t("balance_page.november") : ''}
+            </div>
           </div>
         </td>
       </tr>
       <tr className="clickable">
         <td className="td-first">
-          <div className="cell-text">$6,598.92</div>
+          <div className="cell-text">
+            {!isFR ? t("balance_page.currency_sign") : ''}6,598.92{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+          </div>
         </td>
         <td className="td-second">
           <div className="cell-text">
             <div className="cell-text-inner paid">
-              <span className="cell-text-badge">Paid</span>
+              <span className="cell-text-badge">{t("balance_page.paid")}</span>
             </div>
           </div>
         </td>
@@ -250,7 +285,9 @@ const BalanceTable: React.FC = () => {
         </td>
         <td className="td-fourth">
           <div className="cell-text">
-            <div className="cell-text-badge">Nov 28</div>
+            <div className="cell-text-badge">
+              {!isFR ? t("balance_page.november") + ' ' : ''}28{isFR ? ' ' + t("balance_page.november") : ''}
+            </div>
           </div>
         </td>
       </tr>

@@ -1,16 +1,23 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
 import BalanceTable from "../../components/balanceTable";
 import './balance.scss';
 
 const BalancePage: React.FC = () => {
+  const { i18n, t } = useTranslation();
+  const language = i18n.language;
+  const isFR = language === "fr";
+
   return (
     <main className="balance-page">
       <div className="content-wrapper">
         <div className="content-inner-wrapper">
           <div className="header-block">
             <div className="header-block-inner">
-              <h1 className="main-header">Balances</h1>
-              <span className="balance-amount">$0.00</span>
+              <h1 className="main-header">{t("balance_page.balances")}</h1>
+              <span className="balance-amount">
+                {!isFR ? t("balance_page.currency_sign") : ''}0.00{isFR ? ' ' + t("balance_page.currency_sign") : ''}
+              </span>
               <svg
                 aria-hidden="true"
                 width="16"
@@ -46,11 +53,11 @@ const BalancePage: React.FC = () => {
                   >
                     <path d="M6.85 1a.85.85 0 1 0-1.7 0v4.15H1a.85.85 0 0 0 0 1.7h4.15V11a.85.85 0 1 0 1.7 0V6.85H11a.85.85 0 1 0 0-1.7H6.85V1Z" />
                   </svg>
-                  <span className="button-text">Add funds</span>
+                  <span className="button-text">{t("balance_page.add_funds")}</span>
                 </a>
 
                 <a className="header-button">
-                  <span className="button-text">Manage payouts</span>
+                  <span className="button-text">{t("balance_page.manage_payouts")}</span>
                   <svg
                     aria-hidden="true"
                     width="12"
@@ -91,7 +98,7 @@ const BalancePage: React.FC = () => {
                 <div className="balance-summary">
                   <div className="balance-summary-inner">
                     <div className="balance-summary-title">
-                      <span id="text_balance_summary">Balance summary</span>
+                      <span id="text_balance_summary">{t("balance_page.balance_summary")}</span>
                     </div>
                     <div className="balance-summary-data">
                       <div className="balance-summary-data-inner">
@@ -106,29 +113,29 @@ const BalancePage: React.FC = () => {
                             className="balance-summary-data-list-top"
                           >
                             <div className="balance-summary-data-list-top-wrapper">
-                              <span id="text_payments_type">Payments type</span>
-                              <span id="text_amount">Amount</span>
+                              <span id="text_payments_type">{t("balance_page.payments_type")}</span>
+                              <span id="text_amount">{t("balance_page.amount")}</span>
                             </div>
                           </div>
                           <div className="data-list-item">
                             <div className="list-item-left">
                               <div className="list-item-square" />
-                              <span id="text_incoming" className="list-item-text">Incoming</span>
+                              <span id="text_incoming" className="list-item-text">{t("balance_page.incoming")}</span>
                             </div>
                             <span className="list-item-right">
                               <span id="total_incoming" className="list-item-text">
-                                $99,934.52
+                                {!isFR ? t("balance_page.currency_sign") : ''}99,934.52{isFR ? ' ' + t("balance_page.currency_sign") : ''}
                               </span>
                             </span>
                           </div>
                           <div className="data-list-item data-list-item-available">
                             <div className="list-item-left">
                               <div className="list-item-square"/>
-                              <span id="text_available" className="list-item-text">Available</span>
+                              <span id="text_available" className="list-item-text">{t("balance_page.available")}</span>
                             </div>
                             <span className="list-item-right">
                               <span id="total_available" className="list-item-text">
-                                $0.00
+                                {!isFR ? t("balance_page.currency_sign") : ''}0.00{isFR ? ' ' + t("balance_page.currency_sign") : ''}
                               </span>
                             </span>
                           </div>
@@ -139,19 +146,19 @@ const BalancePage: React.FC = () => {
                 </div>
                 <div className="recent-activity">
                   <div className="recent-activity-header-wrapper">
-                    <h3 className="recent-activity-header">Recent activity</h3>
+                    <h3 className="recent-activity-header">{t("balance_page.recent_activity")}</h3>
                   </div>
                   <div className="recent-activity-tabs">
                     <nav className="recent-activity-nav">
                       <div className="recent-activity-nav-inner">
                         <a href="#" className="recent-activity-nav-item active" onClick={(e) => e.preventDefault()}>
-                          <span className="nav-item-text">Payouts</span>
+                          <span className="nav-item-text">{t("balance_page.payouts")}</span>
                         </a>
                         <a href="#" className="recent-activity-nav-item" onClick={(e) => e.preventDefault()}>
-                          <span className="nav-item-text">Top-ups</span>
+                          <span className="nav-item-text">{t("balance_page.top_ups")}</span>
                         </a>
                         <a href="#" className="recent-activity-nav-item" onClick={(e) => e.preventDefault()}>
-                          <span className="nav-item-text">All activity</span>
+                          <span className="nav-item-text">{t("balance_page.all_activity")}</span>
                         </a>
                       </div>
                     </nav>
@@ -161,13 +168,13 @@ const BalancePage: React.FC = () => {
                       <BalanceTable />
                     </div>
                     <a href="#" className="recent-activity-more" onClick={(e) => e.preventDefault()}>
-                      View more
+                      {t("balance_page.view_more")}
                     </a>
                   </div>
                 </div>
               </div>
               <div className="balances-right">
-                <h2 className="balances-right-header">Reports</h2>
+                <h2 className="balances-right-header">{t("balance_page.reports")}</h2>
                 <div className="balances-right-list">
                   <a href="#" className="balances-right-list-item" onClick={(e) => e.preventDefault()}>
                     <div className="list-item-icon">
@@ -188,8 +195,8 @@ const BalancePage: React.FC = () => {
                       </svg>
                     </div>
                     <div className="list-item-texts">
-                      <div className="list-item-title">Balance summary</div>
-                      <div className="list-item-date">Oct 2025</div>
+                      <div className="list-item-title">{t("balance_page.balance_summary")}</div>
+                      <div className="list-item-date">{t("balance_page.october")} 2025</div>
                     </div>
                   </a>
                   <a href="#" className="balances-right-list-item" onClick={(e) => e.preventDefault()}>
@@ -206,8 +213,8 @@ const BalancePage: React.FC = () => {
                       </svg>
                     </div>
                     <div className="list-item-texts">
-                      <div className="list-item-title">Payout reconciliation</div>
-                      <div className="list-item-date">Oct 2025</div>
+                      <div className="list-item-title">{t("balance_page.payout_reconciliation")}</div>
+                      <div className="list-item-date">{t("balance_page.october")} 2025</div>
                     </div>
                   </a>
                 </div>

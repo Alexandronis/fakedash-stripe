@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 import HomeIcon from '../../assets/home.svg';
 import HomeIconActive from '../../assets/home-active.svg';
 import BalancesIcon from '../../assets/balances.svg';
@@ -19,6 +20,7 @@ const Sidebar: React.FC = () => {
   const location = useLocation();
   const current = location.pathname.replace('/', '');
   const activatableIds = ['dashboard', 'balance/overview'];
+  const { t } = useTranslation();
 
   return (
     <aside className="sidebar">
@@ -47,11 +49,11 @@ const Sidebar: React.FC = () => {
           <section id="core-nav" className="menu-section">
             <ul className="menu-list">
               {[
-                {id: 'dashboard', label: 'Home', icon: HomeIcon, iconActive: HomeIconActive},
-                {id: 'balance/overview', label: 'Balances', icon: BalancesIcon, iconActive: BalancesIconActive},
-                {id: 'transactions', label: 'Transactions', icon: TransactionsIcon, iconActive: HomeIconActive},
-                {id: 'customers', label: 'Customers', icon: CustomersIcon, iconActive: HomeIconActive},
-                {id: 'product_catalog', label: 'Product catalog', icon: ProductCatalogIcon, iconActive: HomeIconActive},
+                {id: 'dashboard', label: t("dashboard_menu.home"), icon: HomeIcon, iconActive: HomeIconActive},
+                {id: 'balance/overview', label: t("dashboard_menu.balances"), icon: BalancesIcon, iconActive: BalancesIconActive},
+                {id: 'transactions', label: t("dashboard_menu.transactions"), icon: TransactionsIcon, iconActive: HomeIconActive},
+                {id: 'customers', label: t("dashboard_menu.customers"), icon: CustomersIcon, iconActive: HomeIconActive},
+                {id: 'product_catalog', label: t("dashboard_menu.product_catalog"), icon: ProductCatalogIcon, iconActive: HomeIconActive},
               ].map((item) => (
                 <li
                   className={`list-item ${activatableIds.includes(item.id) && current === item.id ? 'active' : ''}`}>
@@ -78,14 +80,14 @@ const Sidebar: React.FC = () => {
 
           {/* Shortcuts Section */}
           <section id="workloads-nav" className="menu-section">
-            <div className="primary-nav-section-header">Shortcuts</div>
+            <div className="primary-nav-section-header">{t("dashboard_menu.shortcuts")}</div>
             <ul className="menu-list">
             {[
-                {id: 'payment_links', label: 'Payment Links'},
-                {id: 'tax', label: 'Tax'},
-                {id: 'billing_overview', label: 'Billing Overview'},
-                {id: 'disputes', label: 'Disputes'},
-                {id: 'subscriptions', label: 'Subscriptions'},
+                {id: 'payment_links', label: t("dashboard_menu.payment_links")},
+                {id: 'tax', label: t("dashboard_menu.tax")},
+                {id: 'billing_overview', label: t("dashboard_menu.billing_overview")},
+                {id: 'disputes', label: t("dashboard_menu.disputes")},
+                {id: 'subscriptions', label: t("dashboard_menu.subscriptions")},
               ].map((item) => (
                 <li className="list-item" key={item.id || item.label}>
                   <a
@@ -108,13 +110,13 @@ const Sidebar: React.FC = () => {
 
           {/* Products Section */}
           <section id="workloads-nav" className="menu-section">
-            <div className="primary-nav-section-header">Products</div>
+            <div className="primary-nav-section-header">{t("dashboard_menu.products")}</div>
             <ul className="menu-list">
               {[
-                {id: 'payments', label: 'Payments', icon: PaymentsIcon},
-                {id: 'billing', label: 'Billing', icon: BillingIcon},
-                {id: 'reporting', label: 'Reporting', icon: ReportingIcon},
-                {id: 'More', label: 'More', icon: MoreIcon},
+                {id: 'payments', label: t("dashboard_menu.payments"), icon: PaymentsIcon},
+                {id: 'billing', label: t("dashboard_menu.products"), icon: BillingIcon},
+                {id: 'reporting', label: t("dashboard_menu.reporting"), icon: ReportingIcon},
+                {id: 'More', label: t("dashboard_menu.more"), icon: MoreIcon},
               ].map((item) => (
                 <li className="list-item" key={item.id || item.label}>
                   <a

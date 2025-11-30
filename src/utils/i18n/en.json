@@ -1,0 +1,51 @@
+{
+  "dashboard_menu": {
+    "home": "Home",
+    "balances": "Balances",
+    "transactions": "Transactions",
+    "customers": "Customers",
+    "product_catalog": "Product catalog",
+    "shortcuts": "Shortcuts",
+    "payment_links": "Payment Links",
+    "tax": "Tax",
+    "billing_overview": "Billing Overview",
+    "disputes": "Disputes",
+    "subscriptions": "Subscriptions",
+    "products": "Products",
+    "payments": "Payments",
+    "billing": "Billing",
+    "reporting": "Reporting",
+    "more": "More"
+  },
+  "footer": {
+    "developers": "Developers"
+  },
+  "header": {
+    "search": "Search"
+  },
+  "balance_page": {
+    "balances": "Balances",
+    "currency_sign": "$",
+    "add_funds": "Add funds",
+    "manage_payouts": "Manage payouts",
+    "balance_summary": "Balance summary",
+    "payments_type": "Payments type",
+    "amount": "Amount",
+    "incoming": "Incoming",
+    "available": "Available",
+    "reports": "Reports",
+    "payout_reconciliation": "Payout reconciliation",
+    "recent_activity": "Recent Activity",
+    "payouts": "Payouts",
+    "top_ups": "Top-ups",
+    "all_activity": "All activity",
+    "destination": "Destination",
+    "arrive_by": "Arrive by",
+    "upcoming": "Upcoming",
+    "paid": "Paid",
+    "view_more": "View more",
+    "december": "Dec",
+    "november": "Nov",
+    "october": "Oct"
+  }
+}

@@ -1,7 +1,10 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
 import './footer.scss';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="sticky-footer">
       <div
@@ -33,9 +36,7 @@ const Footer: React.FC = () => {
             d="M3.43 4.512a.75.75 0 0 1 1.058-.081l3.5 3a.75.75 0 0 1 0 1.138l-3.5 3a.75.75 0 1 1-.976-1.138L6.348 8 3.512 5.57a.75.75 0 0 1-.081-1.058ZM8 10.75a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1-.75-.75Z"
           />
         </svg>
-        <span id="text_developers">
-          Developers
-        </span>
+        <span id="text_developers">{t("footer.developers")}</span>
       </div>
 
       <div

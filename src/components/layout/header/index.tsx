@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useCurrentPath } from "../../../hooks/useCurrentPath";
+import { useTranslation } from "react-i18next";
+import { useCurrentPath } from "../../../utils/useCurrentPath";
 import BalanceModal from "../../modals/balanceModal";
 import "./header.scss";
 
@@ -7,6 +8,7 @@ const Header: React.FC = () => {
   const currentPath = useCurrentPath();
   const isBalancesPage = currentPath === "/balance/overview";
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div className="header-wrapper">
@@ -35,7 +37,7 @@ const Header: React.FC = () => {
                   </div>
                   <div className="search-left-text">
                     <div id="text_search">
-                      Search
+                      {t("header.search")}
                     </div>
                   </div>
                 </div>
