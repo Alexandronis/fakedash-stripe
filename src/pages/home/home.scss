@@ -1,0 +1,170 @@
+.home-page {
+    box-sizing: border-box;
+    margin: 60px auto 0;
+    max-width: 1600px;
+    padding: 0 40px 0 280px;
+    .content-wrapper {
+        margin-bottom: 90px;
+        padding-top: 8px;
+        position: relative;
+        z-index: 1;
+        .content-inner-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 24px;
+            .home-top {
+                box-sizing: border-box;
+                .top-header {
+                    color: rgb(48, 49, 61);
+                    font-size: 28px;
+                    font-weight: 700;
+                    line-height: 36px;
+                    margin: 8px 0;
+                }
+                .separator {
+                    border-bottom: 1px solid rgb(216, 222, 228);
+                    margin-bottom: 32px;
+                }
+                .home-main-block {
+                    box-sizing: border-box;
+                    display: flex;
+                    flex: 3 1 0;
+                    flex-direction: row;
+                    .main-left {
+                        box-sizing: border-box;
+                        display: block;
+                        flex: 2 1 0;
+                        min-height: 230px;
+                        padding: 0 20px 0 0;
+                        .main-left-inner {
+                            height: 100%;
+                            max-height: 219px;
+                            .main-texts {
+                                box-sizing: border-box;
+                                display: flex;
+                                flex-direction: row;
+                                .main-text-left, .main-text-right {
+                                    padding-right: 20px;
+                                    .left-top {
+                                        display: flex;
+                                        flex-direction: row;
+                                        .left-item-first {
+                                            .left-item-button {
+                                                color: inherit;
+                                                font-weight: inherit;
+                                                font-size: inherit;
+                                                font-family: inherit;
+                                                font-style: inherit;
+                                                text-align: inherit;
+                                                cursor: pointer;
+                                                background-color: #0000;
+                                                border: 0;
+                                                outline: none;
+                                                margin: 0;
+                                                padding: 0;
+                                                text-decoration: none;
+                                                .button-inner {
+                                                    align-items: normal;
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                    .button-text {
+                                                        color: rgb(84, 89, 105);
+                                                        font-size: 14px;
+                                                        font-weight: 400;
+                                                        line-height: 20px;
+                                                    }
+                                                    .button-icon {
+                                                        margin-left: 8px;
+                                                    }
+                                                }
+                                            }
+                                            .left-item-amount {
+                                                color: rgb(26, 27, 37);
+                                                font-size: 20px;
+                                                font-weight: 400;
+                                                height: 28px;
+                                                line-height: 28px;
+                                                margin-top: 4px;
+                                                min-width: 160px;
+                                            }
+                                            .left-item-time {
+                                                color: rgb(84, 89, 105);
+                                                font-size: 12px;
+                                                font-weight: 400;
+                                                height: 18px;
+                                                line-height: 16px;
+                                            }
+                                        }
+                                        .left-item-second {
+                                            margin-left: 8px;
+                                            min-width: 60px;
+                                        }
+                                    }
+                                }
+                                .main-text-right {
+                                    padding-right: 0;
+                                    .left-top {
+                                        .left-item-first {
+                                            .left-item-amount {
+                                                color: rgb(104, 115, 133);
+                                                font-size: 16px;
+                                                font-weight: 400;
+                                                line-height: 24px;
+                                                min-width: auto;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .main-graph {
+                                height: 114px;
+                                margin: 10px 0 22px;
+                                .main-graph-inner {
+                                    height: 150px;
+                                    margin-top: 10px;
+                                    position: relative;
+                                    .graph-bottom-text {
+                                        bottom: 5px;
+                                        position: absolute;
+                                        width: 100%;
+                                        .graph-bottom-text-inner {
+                                            display: flex;
+                                            flex-direction: row;
+                                            flex-wrap: nowrap;
+                                            justify-content: space-between;
+                                            padding-top: 4px;
+                                            position: relative;
+                                            .graph-bottom-left {
+                                                color: rgb(104, 115, 133);
+                                                font-size: 12px;
+                                                font-weight: 400;
+                                                line-height: 16px;
+                                                padding-right: 20px;
+                                            }
+                                            .graph-bottom-right {
+                                                color: rgb(104, 115, 133);
+                                                font-size: 12px;
+                                                font-weight: 400;
+                                                line-height: 16px;
+                                                padding-left: 20px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .main-right {
+                        background: yellow;
+                        box-sizing: border-box;
+                        display: flex;
+                        flex: 1 1 0;
+                        flex-direction: column;
+                        height: 100px;
+                    }
+                }
+            }
+        }
+    }
+}
