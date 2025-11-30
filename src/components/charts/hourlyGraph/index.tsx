@@ -22,6 +22,38 @@ Chart.register(
   dragData
 );
 
+// plugin: draw dashed vertical line at chart._hoverIndex (if set)
+const hoverDashedLinePlugin = {
+  id: "hoverDashedLine",
+  afterDraw(chart) {
+    // @ts-ignore
+    const idx = (chart as any)._hoverIndex;
+    if (idx == null) return;
+
+    const xScale = chart.scales.x;
+    if (!xScale) return;
+
+    // get pixel for tick (safe)
+    // for CategoryScale use getPixelForTick
+    // @ts-ignore
+    const x = (xScale as any).getPixelForTick(idx);
+    if (x == null) return;
+
+    const ctx = chart.ctx;
+    ctx.save();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = "#999999";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, chart.chartArea.top);
+    ctx.lineTo(x, chart.chartArea.bottom);
+    ctx.stroke();
+    ctx.restore();
+  },
+};
+
+Chart.register(hoverDashedLinePlugin);
+
 const HourlyGraph = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const chartRef = useRef<Chart | null>(null);
@@ -64,31 +96,9 @@ const HourlyGraph = () => {
     ];
 
     const values = [
-      0,
-      0,
-      1572.66,
-      6043.84,
-      2915.37,
-      3442.87,
-      3855.06,
-      5099.49,
-      3855.06,
-      4380.81,
-      6381.11,
-      4349.82,
-      2266.44,
-      3938.62,
-      3750.42,
-      3938.62,
-      5234.4,
-      3658.51,
-      5166.95,
-      3658.51,
-      3345.7,
-      4596.45,
-      7797.64,
-      4596.45,
-      7237.91,
+      0, 0, 1572.66, 6043.84, 2915.37, 3442.87, 3855.06, 5099.49, 3855.06,
+      4380.81, 6381.11, 4349.82, 2266.44, 3938.62, 3750.42, 3938.62, 5234.4,
+      3658.51, 5166.95, 3658.51, 3345.7, 4596.45, 7797.64, 4596.45, 7237.91,
     ];
 
     chartRef.current = new Chart(ctx, {
@@ -107,7 +117,7 @@ const HourlyGraph = () => {
             borderColor: "#999999",
             borderWidth: 2,
 
-            // Remove green fill
+            // Remove fill under line
             fill: false,
 
             // Points hidden until hover
@@ -115,7 +125,7 @@ const HourlyGraph = () => {
             pointHoverRadius: 4,
             pointBorderWidth: 0,
             pointHoverBorderWidth: 2,
-            pointHitRadius: 10,
+            pointHitRadius: 12,
 
             // Hover circle filled gray
             pointHoverBackgroundColor: "#999999",
@@ -126,66 +136,65 @@ const HourlyGraph = () => {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
         plugins: {
-          tooltip: {
-            enabled: false,
-          },
+          tooltip: { enabled: false },
           dragData: {
-            showTooltip: true,
-            onDragEnd: (e, datasetIndex, index, value) => {
+            showTooltip: false,
+            onDragEnd: (_, __, index, value) => {
               console.log("Updated point:", index, value);
             },
           },
         },
-
         scales: {
           y: {
             beginAtZero: true,
-
-            // ✔ Show only ONE horizontal line at bottom
+            // Remove horizontal grid lines
             grid: {
               drawOnChartArea: false,
               drawBorder: false,
+              display: false,
             },
             ticks: { display: false },
           },
-
           x: {
-            // ✔ Keep vertical grid lines
             grid: {
               display: true,
               color: "#cccccc",
-
-              // Make it dashed only for hovered index (custom script)
-              borderDash: [0, 0],
+              // Hide little caps/ends
+              drawBorder: false,
+              drawTicks: false,
             },
-
             ticks: { display: false },
+            // Draw one bottom border line
+            border: {
+              display: true,
+              color: "#cccccc",
+              width: 1,
+            },
           },
         },
 
-        // === HOVER EVENT TO MAKE THE VERTICAL LINE DASHED ===
+        // onHover sets chart._hoverIndex and triggers a draw (no full update)
         onHover(event, chartElements) {
-          if (!chartRef.current) return;
-
           const chart = chartRef.current;
-          const xScale = chart.scales.x;
+          if (!chart) return;
 
-          // Reset all lines to solid
-          xScale.options.grid.borderDash = [0, 0];
+          // determine hovered index (null if none)
+          const hoveredIndex =
+            chartElements && chartElements.length > 0
+              ? chartElements[0].index
+              : null;
 
-          if (chartElements.length > 0) {
-            const index = chartElements[0].index;
+          // @ts-ignore
+          (chart as any)._hoverIndex = hoveredIndex;
 
-            // Make the hovered vertical line dashed
-            xScale.options.grid.borderDashOffset = index;
-            xScale.options.grid.borderDash = [4, 4];
-          }
-
-          chart.update("none");
+          // quick redraw (no re-layout)
+          chart.draw();
         },
       },
+
+      // keep plugin listing only (hover plugin is registered globally)
+      plugins: [],
     });
 
     return () => chartRef.current?.destroy();
