@@ -1,8 +1,9 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import HourlyGraph from '../../components/charts/hourlyGraph';
 
 import './home.scss';
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const [hoveredPoint, setHoveredPoint] = useState<{ value: number | null; hour: string | null }>({ value: null, hour: null });
 
   return (

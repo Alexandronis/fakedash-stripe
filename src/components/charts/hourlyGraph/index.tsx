@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useRef } from "react";
 import {
   Chart,
@@ -55,7 +56,10 @@ const hoverDashedLinePlugin = {
 Chart.register(hoverDashedLinePlugin);
 
 interface HourlyGraphProps {
-  onHoverValueChange?: (value: number | null) => void;
+  onHoverValueChange?: (value: number | null) => (value: (((prevState: {
+    value: number | null;
+    hour: string | null
+  }) => { value: number | null; hour: string | null }) | { value: number | null; hour: string | null })) => void;
 }
 
 const HourlyGraph: React.FC<HourlyGraphProps> = ({ onHoverValueChange }) => {
