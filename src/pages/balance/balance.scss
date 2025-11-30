@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 60px auto 0;
     max-width: 1600px;
-    padding: 0 40px 0 272px;
+    padding: 0 40px 0 280px;
     .content-wrapper {
         margin-bottom: 90px;
         padding-top: 8px;
@@ -80,8 +80,14 @@
                     display: grid;
                     gap: 32px;
                     grid-template-columns: repeat(12, minmax(0px, 1fr));
+                    @media(min-width: 1440px) {
+                        gap: 48px;
+                    }
                     .balances-left {
                         grid-column-end: span 8;
+                        @media(min-width: 1440px) {
+                            grid-column-end: span 9;
+                        }
                         .balance-summary {
                             margin-bottom: 35px;
                             .balance-summary-inner {
@@ -308,6 +314,9 @@
                     .balances-right {
                         grid-column-end: span 4;
                         margin-bottom: 32px;
+                        @media(min-width: 1440px) {
+                            grid-column-end: span 3;
+                        }
                         .balances-right-header {
                             color: rgb(48, 49, 61);
                             font-size: 16px;
