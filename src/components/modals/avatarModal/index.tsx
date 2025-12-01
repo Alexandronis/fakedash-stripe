@@ -10,15 +10,49 @@ interface AvatarModalProps {
 
 const AvatarModal: React.FC<AvatarModalProps> = ({ isOpen, onClose }) => {
   const { avatarUrl, setAvatarUrl } = useAvatar();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [isError, setIsError] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   if (!isOpen) return null;
 
   const handleSelect = (url: string) => {
     setAvatarUrl(url);
+    setConfirmationMessage("Avatar selected!");
+    setIsError(false);
     setShowConfirmation(true);
     onClose();
     setTimeout(() => setShowConfirmation(false), 1500);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  const handleUploadClick = () => {
+    if (!selectedFile) {
+      setConfirmationMessage("Please select a file.");
+      setIsError(true);
+      setShowConfirmation(true);
+      setTimeout(() => setShowConfirmation(false), 1500);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result as string;
+      setAvatarUrl(dataUrl);
+      setConfirmationMessage(`File uploaded successfully: ${selectedFile.name}`);
+      setIsError(false);
+      setShowConfirmation(true);
+      onClose();
+      setTimeout(() => setShowConfirmation(false), 1500);
+      setSelectedFile(null);
+    };
+    reader.readAsDataURL(selectedFile);
   };
 
   return (
@@ -43,18 +77,29 @@ const AvatarModal: React.FC<AvatarModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {showConfirmation && (
-          <div className="confirmation">Avatar selected!</div>
+          <div className={`confirmation ${isError ? "error" : "success"}`}>
+            {confirmationMessage}
+          </div>
         )}
 
-        <form className="upload-form" onSubmit={(e) => e.preventDefault()}>
+        <div className="upload-form">
           <label htmlFor="fileInput" id="customFileLabel">
             Choose a File
           </label>
-
-          <input type="file" id="fileInput" accept="image/*" />
-
-          <button id="uploadButton" type="button">Upload</button>
-        </form>
+          <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          <button
+            id="uploadButton"
+            type="button"
+            onClick={handleUploadClick}
+          >
+            Upload
+          </button>
+        </div>
       </div>
     </div>
   );
