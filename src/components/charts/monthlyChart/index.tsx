@@ -140,6 +140,7 @@ const MonthlyGraph = () => {
             },
           },
           x: {
+            display: false,
             ticks: {
               callback: (val, index) => {
                 if (index === 11) return labels[11]; // Nov12
