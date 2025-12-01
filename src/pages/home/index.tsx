@@ -4,7 +4,8 @@ import HourlyGraph from '../../components/charts/hourlyGraph';
 
 import './home.scss';
 const HomePage: React.FC = () => {
-  const [hoveredPoint, setHoveredPoint] = useState<{ value: number | null; hour: string | null }>({ value: null, hour: null });
+  const [primary, setPrimary] = useState({ value: null, hour: null });
+  const [secondary, setSecondary] = useState({ value: null, hour: null });
 
   return (
     <main className="home-page">
@@ -41,8 +42,12 @@ const HomePage: React.FC = () => {
                               </div>
                             </div>
                           </button>
-                          <div className="left-item-amount">€256.28</div>
-                          <div className="left-item-time">9:00 PM</div>
+                          <div className="left-item-amount">
+                            {primary.value != null
+                              ? `$${primary.value.toLocaleString()}`
+                              : "$256.28"}
+                          </div>
+                          <div className="left-item-time">{secondary.hour != null ? secondary.hour : "9:00 PM"}</div>
                         </div>
                         <div className="left-item-second" />
                       </div>
@@ -72,12 +77,12 @@ const HomePage: React.FC = () => {
                             </div>
                           </button>
                           <div className="left-item-amount">
-                            {hoveredPoint.value != null
-                              ? `$${hoveredPoint.value.toLocaleString()}`
+                            {secondary.value != null
+                              ? `$${secondary.value.toLocaleString()}`
                               : "$7,797.64"}
                           </div>
                           <div className="left-item-time">
-                            {hoveredPoint.hour != null ? hoveredPoint.hour : "9:00 PM"}
+                            {secondary.hour != null ? secondary.hour : "9:00 PM"}
                           </div>
                         </div>
                       </div>
@@ -85,7 +90,10 @@ const HomePage: React.FC = () => {
                   </div>
                   <div className="main-graph">
                   <div className="main-graph-inner">
-                      <HourlyGraph onHoverValueChange={setHoveredPoint} />
+                      <HourlyGraph
+                        onHoverValueChangePrimary={setPrimary}
+                        onHoverValueChangeSecondary={setSecondary}
+                      />
                       <div className="graph-bottom-text">
                         <div className="graph-bottom-text-inner">
                           <div className="graph-bottom-left">12:00 AM</div>

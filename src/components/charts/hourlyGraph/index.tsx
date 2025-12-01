@@ -34,8 +34,7 @@ const hoverDashedLinePlugin = {
     const xScale = chart.scales.x;
     if (!xScale) return;
 
-    // get pixel for tick (safe)
-    // for CategoryScale use getPixelForTick
+    // get pixel for tick (CategoryScale)
     // @ts-ignore
     const x = (xScale as any).getPixelForTick(idx);
     if (x == null) return;
@@ -56,15 +55,16 @@ const hoverDashedLinePlugin = {
 Chart.register(hoverDashedLinePlugin);
 
 interface HourlyGraphProps {
-  onHoverValueChange?: (value: number | null) => (value: (((prevState: {
-    value: number | null;
-    hour: string | null
-  }) => { value: number | null; hour: string | null }) | { value: number | null; hour: string | null })) => void;
+  onHoverValueChangePrimary?: (data: { value: number | null; hour: string | null }) => void;
+  onHoverValueChangeSecondary?: (data: { value: number | null; hour: string | null }) => void;
 }
 
-const HourlyGraph: React.FC<HourlyGraphProps> = ({ onHoverValueChange }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const chartRef = useRef<Chart | null>(null);
+const HourlyGraph: React.FC<HourlyGraphProps> = ({
+ onHoverValueChangePrimary,
+ onHoverValueChangeSecondary
+}) => {
+  const canvasRef = useRef(null);
+  const chartRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -75,6 +75,7 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({ onHoverValueChange }) => {
 
     if (chartRef.current) chartRef.current.destroy();
 
+    // Labels (same for both lines)
     const labels = [
       "12:00 AM",
       "1:00 AM",
@@ -103,10 +104,22 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({ onHoverValueChange }) => {
       "12:00 AM",
     ];
 
-    const values = [
-      0, 0, 1572.66, 6043.84, 2915.37, 3442.87, 3855.06, 5099.49, 3855.06,
-      4380.81, 6381.11, 4349.82, 2266.44, 3938.62, 3750.42, 3938.62, 5234.4,
-      3658.51, 5166.95, 3658.51, 3345.7, 4596.45, 7797.64, 4596.45, 7237.91,
+    const valuesPrimary = [
+      0,717.5532861652297,1370.749850877256,1370.749850877256,1370.749850877256,
+      2480.467529430613,2515.0595598736118,2515.0595598736118,2230.6146700512318,
+      2024.3701996161817,1861.6024972472014,1801.593308213488,1889.1922499616355,
+      1889.1922499616355,786.1271676300576,3158.2303305805344,3158.2303305805344,
+      4564.544770051232,5267.529213744844,4254.335260115607,6370.3510294306125,
+      6688.143365111076,6831.457449623853,null,null
+    ];
+
+    const valuesSecondary = [
+      0,0,1268.2374005143893,1268.2374005143893,1268.2374005143893,
+      1268.2374005143893,3108.8364813888456,3343.6721542146224,3343.6721542146224,
+      3343.6721542146224,3343.6721542146224,5410.404624277457,3425.3658827065374,
+      3425.3658827065374,3425.3658827065374,2975.3170382256685,2950.3263668246514,
+      2950.3263668246514,2950.3263668246514,2950.3263668246514,3706.711713211733,
+      3706.711713211733,4640.039069736763,5214.901766152278,5214.901766152278
     ];
 
     chartRef.current = new Chart(ctx, {
@@ -114,109 +127,99 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({ onHoverValueChange }) => {
       data: {
         labels,
         datasets: [
+          // PRIMARY (purple)
           {
-            label: "Hourly",
-            data: values,
-
-            // Strict straight line
-            tension: 0,
-
-            // Line color → gray
-            borderColor: "#c0c8d1",
+            label: "PrimaryLine",
+            data: valuesPrimary,
+            borderColor: "#635bff",
             borderWidth: 1,
-
-            // Remove fill under line
-            fill: false,
-
-            // Points hidden until hover
+            tension: 0,
             pointRadius: 0,
             pointHoverRadius: 4,
-            pointBorderWidth: 0,
-            pointHoverBorderWidth: 2,
-            pointHitRadius: 12,
-
-            // Hover circle filled gray
-            pointHoverBackgroundColor: "#c0c8d1",
-            pointHoverBorderColor: "#c0c8d1",
+            pointHoverBackgroundColor: "#635bff",
+            pointHoverBorderColor: "#635bff",
           },
+
+          // SECONDARY (gray)
+          {
+            label: "SecondaryLine",
+            data: valuesSecondary,
+            borderColor: "#C0C8D2",
+            borderWidth: 1,
+            tension: 0,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+            pointHoverBackgroundColor: "#C0C8D2",
+            pointHoverBorderColor: "#C0C8D2",
+          }
         ],
       },
+
       options: {
         responsive: true,
         maintainAspectRatio: false,
+
         interaction: {
-          mode: 'index',       // hover by vertical index, not just nearest point
-          intersect: false,    // hover anywhere along the vertical line
-        },
-        plugins: {
-          tooltip: { enabled: false },
-          dragData: {
-            showTooltip: false,
-            onDragEnd: (_, __, index, value) => {
-              console.log("Updated point:", index, value);
-            },
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            // Remove horizontal grid lines
-            grid: {
-              drawOnChartArea: false,
-              drawBorder: false,
-              display: false,
-            },
-            ticks: { display: false },
-          },
-          x: {
-            grid: {
-              display: true,
-              color: "#f2f3f4",
-              // Hide little caps/ends
-              drawBorder: false,
-              drawTicks: false,
-            },
-            ticks: { display: false },
-            // Draw one bottom border line
-            border: {
-              display: true,
-              color: "#f2f3f4",
-              width: 1,
-            },
-          },
+          mode: "index",
+          intersect: false,
         },
 
-        // onHover sets chart._hoverIndex and triggers a draw (no full update)
-        onHover(event, chartElements) {
+        plugins: { tooltip: { enabled: false }, dragData: { enabled: false } },
+
+        onHover(event, elements) {
           const chart = chartRef.current;
           if (!chart) return;
 
-          // determine hovered index (null if none)
-          const hoveredIndex =
-            chartElements && chartElements.length > 0
-              ? chartElements[0].index
-              : null;
+          const hoveredIndex = elements && elements.length ? elements[0].index : null;
 
+          // store hover index and redraw
           // @ts-ignore
-          (chart as any)._hoverIndex = hoveredIndex;
-
-          // quick redraw (no re-layout)
+          chart._hoverIndex = hoveredIndex;
           chart.draw();
 
-          // 🔥 send hovered value to parent
-          // 🔥 send hovered value and hour to parent
-          const hoveredValue =
-            hoveredIndex != null ? chart.data.datasets[0].data[hoveredIndex] : null;
-          const hoveredHour =
-            hoveredIndex != null ? chart.data.labels[hoveredIndex] : null;
-
-          if (onHoverValueChange) {
-            onHoverValueChange({ value: hoveredValue, hour: hoveredHour });
+          if (hoveredIndex == null) {
+            if (onHoverValueChangePrimary) onHoverValueChangePrimary({ value: null, hour: null });
+            if (onHoverValueChangeSecondary) onHoverValueChangeSecondary({ value: null, hour: null });
+            return;
           }
+
+          const hour = labels[hoveredIndex];
+
+          if (onHoverValueChangePrimary) {
+            onHoverValueChangePrimary({ value: valuesPrimary[hoveredIndex], hour });
+          }
+          if (onHoverValueChangeSecondary) {
+            onHoverValueChangeSecondary({ value: valuesSecondary[hoveredIndex], hour });
+          }
+        },
+
+        scales: {
+          y: {
+            beginAtZero: true,
+            display: false,
+          },
+
+          x: {
+            // SHOW vertical grid lines uniformly
+            display: true,
+            offset: false,         // IMPORTANT: align ticks to pixels (no shift)
+            grid: {
+              display: true,
+              offset: false,       // IMPORTANT
+              color: "#f2f3f4",
+              drawTicks: false,
+              // drawBorder false keeps axis border from another coloring
+              drawBorder: false,
+            },
+
+            ticks: { display: false },
+
+            // single bottom border line
+            border: { display: true, color: "#f2f3f4", width: 1 },
+          },
         },
       },
 
-      // keep plugin listing only (hover plugin is registered globally)
       plugins: [],
     });
 
