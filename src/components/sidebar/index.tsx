@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
+import { useAvatar } from "../../context/AvatarContext";
 import HomeIcon from '../../assets/home.svg';
 import HomeIconActive from '../../assets/home-active.svg';
 import BalancesIcon from '../../assets/balances.svg';
@@ -21,6 +22,7 @@ const Sidebar: React.FC = () => {
   const current = location.pathname.replace('/', '');
   const activatableIds = ['dashboard', 'balance/overview'];
   const { t } = useTranslation();
+  const { avatarUrl } = useAvatar();
 
   return (
     <aside className="sidebar">
@@ -32,7 +34,7 @@ const Sidebar: React.FC = () => {
           <div className="sidebar-top-image">
             <img
               id="avatarImage"
-              src="/avatar.jpeg"
+              src={avatarUrl}
               alt="Z"
             />
           </div>

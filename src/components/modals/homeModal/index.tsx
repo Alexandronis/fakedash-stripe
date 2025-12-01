@@ -9,6 +9,7 @@ const HomeModal = ({ isOpen, onClose }: any) => {
   const { i18n } = useTranslation();
   const { totalEarnings, setTotalEarnings, currencySign, setCurrencySign } = useSettings();
   const [value, setValue] = useState(totalEarnings.toFixed(2));
+  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -40,149 +41,160 @@ const HomeModal = ({ isOpen, onClose }: any) => {
   };
 
   return ReactDOM.createPortal(
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <span className="modal-close" onClick={onClose}>×</span>
-        <h2 className="modal-logo">
-          <a href="http://fakedash.com/my-account/">
-            <img src="/fakedash-logo.png" alt=""/>
-          </a>
-        </h2>
-        <form id="settingsForm" onSubmit={handleSave}>
-          <div className="settings-form-group">
-            <div className="settings-form-group-inner">
-              <label htmlFor="totalEarnings">Total Earnings</label>
-              <div className="settings-input-wrapper">
-                <span className="settings-currency-symbol">{currencySign}</span>
-                <input
-                  type="text"
-                  id="totalEarnings"
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                />
+    <>
+      <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <span className="modal-close" onClick={onClose}>×</span>
+          <h2 className="modal-logo">
+            <a href="http://fakedash.com/my-account/">
+              <img src="/fakedash-logo.png" alt=""/>
+            </a>
+          </h2>
+          <form id="settingsForm" onSubmit={handleSave}>
+            <div className="settings-form-group">
+              <div className="settings-form-group-inner">
+                <label htmlFor="totalEarnings">Total Earnings</label>
+                <div className="settings-input-wrapper">
+                  <span className="settings-currency-symbol">{currencySign}</span>
+                  <input
+                    type="text"
+                    id="totalEarnings"
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="settings-form-group-inner">
-              <label htmlFor="previousMonthEarnings">Day Before</label>
-              <div className="settings-input-wrapper number">
-                <input
-                  type="number"
-                  id="previousMonthEarnings"
-                  placeholder="10"
-                />
-                <span className="settings-percentage">%</span>
+              <div className="settings-form-group-inner">
+                <label htmlFor="previousMonthEarnings">Day Before</label>
+                <div className="settings-input-wrapper number">
+                  <input
+                    type="number"
+                    id="previousMonthEarnings"
+                    placeholder="10"
+                  />
+                  <span className="settings-percentage">%</span>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div className="settings-form-group">
-            <div className="settings-form-group-inner">
-              <label htmlFor="storeName">Total Earnings</label>
-              <div className="settings-input-wrapper">
-                <input
-                  type="text"
-                  id="storeName"
-                  placeholder="DASHNAMEHERE"
-                />
-              </div>
-            </div>
-            <div className="settings-form-group-inner">
-              <label htmlFor="previousMonthEarnings">Day Before</label>
-              <div className="settings-input-wrapper">
-                <button type="button" id="change_avatar" className="settings-save-btn">
-                  Edit Avatar
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="settings-form-group">
-            <div className="settings-form-group-inner">
-              <label htmlFor="language">Language & Currency</label>
-              <select
-                id="language"
-                value={i18n.language}
-                onChange={handleLanguageChange}
-              >
-                <option value="en">English ($)</option>
-                <option value="fr">French (€)</option>
-              </select>
             </div>
 
-            <div className="settings-form-group-inner">
-              <label htmlFor="curr_sign">USD - AUD</label>
-              <select
-                id="curr_sign"
-                value={currencySign}
-                onChange={handleCurrencyChange}
-              >
-                <option value="$">USD</option>
-                <option value="A$">AUD</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="settings-form-group">
-            <div className="settings-form-group-inner">
-              <label htmlFor="payoutPercent">Payout</label>
-              <div className="settings-input-wrapper number">
-                <input
-                  type="number"
-                  id="payoutPercent"
-                  placeholder="10"
-                />
-                <span className="settings-percentage">%</span>
+            <div className="settings-form-group">
+              <div className="settings-form-group-inner">
+                <label htmlFor="storeName">Total Earnings</label>
+                <div className="settings-input-wrapper">
+                  <input
+                    type="text"
+                    id="storeName"
+                    placeholder="DASHNAMEHERE"
+                  />
+                </div>
+              </div>
+              <div className="settings-form-group-inner">
+                <label htmlFor="previousMonthEarnings">Day Before</label>
+                <div className="settings-input-wrapper">
+                  <button
+                    type="button"
+                    id="change_avatar"
+                    className="settings-save-btn"
+                    onClick={() => setIsAvatarModalOpen(true)}
+                  >
+                    Edit Avatar
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="settings-form-group-inner">
-              <label htmlFor="failedPayments">Failed Payments</label>
-              <div className="settings-input-wrapper number">
-                <input
-                  type="number"
-                  id="failedPayments"
-                  placeholder="4"
-                />
-                <span className="settings-percentage">%</span>
+
+            <div className="settings-form-group">
+              <div className="settings-form-group-inner">
+                <label htmlFor="language">Language & Currency</label>
+                <select
+                  id="language"
+                  value={i18n.language}
+                  onChange={handleLanguageChange}
+                >
+                  <option value="en">English ($)</option>
+                  <option value="fr">French (€)</option>
+                </select>
+              </div>
+
+              <div className="settings-form-group-inner">
+                <label htmlFor="curr_sign">USD - AUD</label>
+                <select
+                  id="curr_sign"
+                  value={currencySign}
+                  onChange={handleCurrencyChange}
+                >
+                  <option value="$">USD</option>
+                  <option value="A$">AUD</option>
+                </select>
               </div>
             </div>
-          </div>
 
-          <div className="settings-form-group">
-            <div className="settings-form-group-inner">
-              <label htmlFor="linkPayments">Link Payments</label>
-              <div className="settings-input-wrapper number">
-                <input
-                  type="number"
-                  id="linkPayments"
-                  placeholder="0"
-                />
-                <span className="settings-percentage">%</span>
+            <div className="settings-form-group">
+              <div className="settings-form-group-inner">
+                <label htmlFor="payoutPercent">Payout</label>
+                <div className="settings-input-wrapper number">
+                  <input
+                    type="number"
+                    id="payoutPercent"
+                    placeholder="10"
+                  />
+                  <span className="settings-percentage">%</span>
+                </div>
+              </div>
+              <div className="settings-form-group-inner">
+                <label htmlFor="failedPayments">Failed Payments</label>
+                <div className="settings-input-wrapper number">
+                  <input
+                    type="number"
+                    id="failedPayments"
+                    placeholder="4"
+                  />
+                  <span className="settings-percentage">%</span>
+                </div>
               </div>
             </div>
-            <div className="settings-form-group-inner">
-              <label htmlFor="refunds">Refunds</label>
-              <div className="settings-input-wrapper number">
-                <input
-                  type="number"
-                  id="refunds"
-                  placeholder="0"
-                />
-                <span className="settings-percentage">%</span>
+
+            <div className="settings-form-group">
+              <div className="settings-form-group-inner">
+                <label htmlFor="linkPayments">Link Payments</label>
+                <div className="settings-input-wrapper number">
+                  <input
+                    type="number"
+                    id="linkPayments"
+                    placeholder="0"
+                  />
+                  <span className="settings-percentage">%</span>
+                </div>
+              </div>
+              <div className="settings-form-group-inner">
+                <label htmlFor="refunds">Refunds</label>
+                <div className="settings-input-wrapper number">
+                  <input
+                    type="number"
+                    id="refunds"
+                    placeholder="0"
+                  />
+                  <span className="settings-percentage">%</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="settings-form-group save">
-            <button type="submit" className="settings-save-btn">Save Changes</button>
-          </div>
+            <div className="settings-form-group save">
+              <button type="submit" className="settings-save-btn">Save Changes</button>
+            </div>
 
-          <div className="settings-form-group last">
-            <button type="button" className="settings-save-btn">Logout</button>
-            <button type="button" className="settings-save-btn">Reset</button>
-          </div>
-        </form>
+            <div className="settings-form-group last">
+              <button type="button" className="settings-save-btn">Logout</button>
+              <button type="button" className="settings-save-btn">Reset</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+      <AvatarModal
+        isOpen={isAvatarModalOpen}
+        onClose={() => setIsAvatarModalOpen(false)}
+      />
+    </>
     ,
     document.body
   );
