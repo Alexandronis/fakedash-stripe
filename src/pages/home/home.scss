@@ -11,7 +11,7 @@
         .content-inner-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 15px;
             margin-bottom: 24px;
             .home-top {
                 box-sizing: border-box;
@@ -98,7 +98,7 @@
                                         }
                                         .left-item-second {
                                             margin-left: 8px;
-                                            min-width: 60px;
+                                            min-width: 0;
                                         }
                                     }
                                 }
@@ -121,7 +121,7 @@
                                 height: 114px;
                                 margin: 10px 0 22px;
                                 .main-graph-inner {
-                                    height: 150px;
+                                    height: 123px;
                                     margin-top: 10px;
                                     position: relative;
                                     .graph-bottom-text {

@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
                         <div className="left-item-first">
                           <button className="left-item-button">
                             <div className="button-inner">
-                              <span className="button-text">Gross volume</span>
+                              <span className="button-text">Yesterday</span>
                               <div className="button-icon">
                                 <svg
                                   aria-hidden="true"
@@ -317,7 +317,25 @@ const HomePage: React.FC = () => {
                   </div>
                   <div className="bottom-section-single-data">
                     <div className="bottom-section-single-top">
-                      {/* Second chart goes here */}
+                      <div className="monthly-graph">
+                        <div
+                          id="monthly-tooltip"
+                          style={{
+                            position: "absolute",
+                            pointerEvents: "none",
+                            opacity: 0,
+                            background: "rgba(0,0,0,0.8)",
+                            color: "#fff",
+                            padding: "6px 8px",
+                            borderRadius: "4px",
+                            fontSize: "12px",
+                            transition: "all 0.1s ease",
+                            whiteSpace: "nowrap",
+                            zIndex: 1000,
+                          }}
+                        />
+                        <MonthlyGraph/>
+                      </div>
                     </div>
                     <div className="bottom-section-single-bottom">
                     <div className="bottom-section-single-left">Updated 2:12 PM</div>
@@ -326,25 +344,6 @@ const HomePage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="monthly-graph">
-                  <div
-                    id="monthly-tooltip"
-                    style={{
-                      position: "absolute",
-                      pointerEvents: "none",
-                      opacity: 0,
-                      background: "rgba(0,0,0,0.8)",
-                      color: "#fff",
-                      padding: "6px 8px",
-                      borderRadius: "4px",
-                      fontSize: "12px",
-                      transition: "all 0.1s ease",
-                      whiteSpace: "nowrap",
-                      zIndex: 1000,
-                    }}
-                  />
-                  <MonthlyGraph/>
                 </div>
               </div>
 
