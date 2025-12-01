@@ -79,7 +79,7 @@ const HomeModal = ({ isOpen, onClose }: any) => {
 
             <div className="settings-form-group">
               <div className="settings-form-group-inner">
-                <label htmlFor="storeName">Total Earnings</label>
+                <label htmlFor="storeName">Store Name</label>
                 <div className="settings-input-wrapper">
                   <input
                     type="text"
@@ -89,7 +89,7 @@ const HomeModal = ({ isOpen, onClose }: any) => {
                 </div>
               </div>
               <div className="settings-form-group-inner">
-                <label htmlFor="previousMonthEarnings">Day Before</label>
+                <label htmlFor="previousMonthEarnings">Avatar</label>
                 <div className="settings-input-wrapper">
                   <button
                     type="button"
