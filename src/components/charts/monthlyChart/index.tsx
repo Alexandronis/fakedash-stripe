@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import dragData from "chartjs-plugin-dragdata";
 import { useHomeData } from "../../../context/HomeDataContext";
-// import "./monthlyGraph.scss";
+import "./monthlyChart.scss";
 
 Chart.register(
   LineController,
@@ -116,9 +116,10 @@ const MonthlyGraph = () => {
           y: {
             min: 0,
             max: 5101,
+            position: "right", // move labels to right
             ticks: {
               stepSize: 2000,
-              callback: (val) => `$${val / 1000}k`,
+              callback: (val) => `$${(val / 1000).toFixed(2)}k`, // round to 2 decimals
               color: "#6c7688",
             },
             grid: {
