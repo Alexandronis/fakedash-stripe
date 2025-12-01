@@ -24,6 +24,62 @@ Chart.register(
   dragData
 );
 
+const defaultChartA = [
+  0,
+  0,
+  0,
+  0,
+  2056.2364264654357,
+  2056.2364264654357,
+  2056.2364264654357,
+  2178.314171252013,
+  2178.314171252013,
+  2178.314171252013,
+  2178.314171252013,
+  2879.19,
+  1625.060359869742,
+  785.23,
+  1067.11,
+  1937.9907331798343,
+  3463.4129842103985,
+  3463.4129842103985,
+  3463.4129842103985,
+  3463.4129842103985,
+  null,
+  null,
+  null,
+  null,
+  null
+];
+
+const defaultChartB = [
+  0,
+  0,
+  1143.9664640650165,
+  1143.9664640650165,
+  1143.9664640650165,
+  2504.3733100550853,
+  2504.3733100550853,
+  2504.3733100550853,
+  2504.3733100550853,
+  3186.642631103393,
+  3164.1007237399635,
+  3164.1007237399635,
+  2982.883939975166,
+  2864.9910600248345,
+  2864.9910600248345,
+  2864.9910600248345,
+  2661.232368896607,
+  2661.232368896607,
+  2661.232368896607,
+  3043.664466918205,
+  3043.664466918205,
+  3043.664466918205,
+  3043.664466918205,
+  4703.908535934984,
+  5264.926230262997
+];
+
 // plugin: draw dashed vertical line at chart._hoverIndex (if set)
 const hoverDashedLinePlugin = {
   id: "hoverDashedLine",
@@ -107,8 +163,13 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
     ];
 
     // read initial values from context (homeData)
-    const valuesPrimary = data.chartA.slice();
-    const valuesSecondary = data.chartB.slice();
+
+    const isChartANulls = data.chartA.every(value => value === null);
+    const isChartBNulls = data.chartB.every(value => value === null);
+    console.log(isChartANulls);
+
+    const valuesPrimary = isChartANulls ? defaultChartA :data.chartA.slice();
+    const valuesSecondary = isChartBNulls ? defaultChartB :data.chartB.slice();
 
     chartRef.current = new Chart(ctx, {
       type: "line",
@@ -206,10 +267,10 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
           const hour = labels[hoveredIndex];
 
           if (onHoverValueChangePrimary) {
-            onHoverValueChangePrimary({ value: data.chartA[hoveredIndex], hour });
+            onHoverValueChangePrimary({ value: isChartANulls ? defaultChartA[hoveredIndex] : data.chartA[hoveredIndex], hour });
           }
           if (onHoverValueChangeSecondary) {
-            onHoverValueChangeSecondary({ value: data.chartB[hoveredIndex], hour });
+            onHoverValueChangeSecondary({ value: isChartBNulls ? defaultChartB[hoveredIndex] : data.chartB[hoveredIndex], hour });
           }
         },
 
@@ -254,8 +315,11 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
     try {
       // update datasets in place
       if (chart.data && chart.data.datasets && chart.data.datasets.length >= 2) {
-        chart.data.datasets[0].data = data.chartA.slice();
-        chart.data.datasets[1].data = data.chartB.slice();
+        const isChartANulls = data.chartA.every(value => value === null);
+        const isChartBNulls = data.chartB.every(value => value === null);
+
+        chart.data.datasets[0].data = isChartANulls ? defaultChartA : data.chartA.slice();
+        chart.data.datasets[1].data = isChartBNulls ? defaultChartB : data.chartB.slice();
         chart.update("none");
       }
     } catch (err) {
