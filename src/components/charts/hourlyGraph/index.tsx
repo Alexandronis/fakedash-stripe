@@ -11,6 +11,7 @@ import {
   Filler,
 } from "chart.js";
 import dragData from "chartjs-plugin-dragdata";
+import { useHomeData } from "../../../context/HomeDataContext";
 
 Chart.register(
   LineController,
@@ -65,6 +66,7 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
 }) => {
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
+  const { data, updateMultiple } = useHomeData();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -104,23 +106,9 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
       "12:00 AM",
     ];
 
-    const valuesPrimary = [
-      0,717.5532861652297,1370.749850877256,1370.749850877256,1370.749850877256,
-      2480.467529430613,2515.0595598736118,2515.0595598736118,2230.6146700512318,
-      2024.3701996161817,1861.6024972472014,1801.593308213488,1889.1922499616355,
-      1889.1922499616355,786.1271676300576,3158.2303305805344,3158.2303305805344,
-      4564.544770051232,5267.529213744844,4254.335260115607,6370.3510294306125,
-      6688.143365111076,6831.457449623853,null,null
-    ];
-
-    const valuesSecondary = [
-      0,0,1268.2374005143893,1268.2374005143893,1268.2374005143893,
-      1268.2374005143893,3108.8364813888456,3343.6721542146224,3343.6721542146224,
-      3343.6721542146224,3343.6721542146224,5410.404624277457,3425.3658827065374,
-      3425.3658827065374,3425.3658827065374,2975.3170382256685,2950.3263668246514,
-      2950.3263668246514,2950.3263668246514,2950.3263668246514,3706.711713211733,
-      3706.711713211733,4640.039069736763,5214.901766152278,5214.901766152278
-    ];
+    // read initial values from context (homeData)
+    const valuesPrimary = data.chartA.slice();
+    const valuesSecondary = data.chartB.slice();
 
     chartRef.current = new Chart(ctx, {
       type: "line",
@@ -135,6 +123,7 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
             borderWidth: 1,
             tension: 0,
             pointRadius: 0,
+            pointHitRadius: 10,             // <-- REQUIRED FOR DRAGGING
             pointHoverRadius: 4,
             pointHoverBackgroundColor: "#635bff",
             pointHoverBorderColor: "#635bff",
@@ -148,6 +137,7 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
             borderWidth: 1,
             tension: 0,
             pointRadius: 0,
+            pointHitRadius: 10,             // <-- REQUIRED FOR DRAGGING
             pointHoverRadius: 4,
             pointHoverBackgroundColor: "#C0C8D2",
             pointHoverBorderColor: "#C0C8D2",
@@ -164,7 +154,37 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
           intersect: false,
         },
 
-        plugins: { tooltip: { enabled: false }, dragData: { enabled: false } },
+        plugins: {
+          tooltip: { enabled: false },
+          dragData: {
+            enabled: true,
+            round: 2,
+            showTooltip: false,
+            // onDragEnd receives (e, datasetIndex, index, value)
+            onDragEnd: (e, datasetIndex, index, value) => {
+              try {
+                const chart = chartRef.current;
+                if (!chart) return;
+
+                // clone dataset array and set new value
+                const ds = chart.data.datasets[datasetIndex].data.map((v) =>
+                  v === null ? null : Number(v)
+                );
+
+                ds[index] = value === null ? null : Number(value);
+
+                if (datasetIndex === 0) {
+                  updateMultiple({ chartA: ds });
+                } else {
+                  updateMultiple({ chartB: ds });
+                }
+              } catch (err) {
+                // ignore
+                console.error("drag onDragEnd error", err);
+              }
+            },
+          },
+        },
 
         onHover(event, elements) {
           const chart = chartRef.current;
@@ -186,10 +206,10 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
           const hour = labels[hoveredIndex];
 
           if (onHoverValueChangePrimary) {
-            onHoverValueChangePrimary({ value: valuesPrimary[hoveredIndex], hour });
+            onHoverValueChangePrimary({ value: data.chartA[hoveredIndex], hour });
           }
           if (onHoverValueChangeSecondary) {
-            onHoverValueChangeSecondary({ value: valuesSecondary[hoveredIndex], hour });
+            onHoverValueChangeSecondary({ value: data.chartB[hoveredIndex], hour });
           }
         },
 
@@ -224,7 +244,24 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
     });
 
     return () => chartRef.current?.destroy();
-  }, []);
+  }, []); // only mount once
+
+  // react to context changes (chart arrays) and update chart without full re-create
+  useEffect(() => {
+    const chart = chartRef.current;
+    if (!chart) return;
+
+    try {
+      // update datasets in place
+      if (chart.data && chart.data.datasets && chart.data.datasets.length >= 2) {
+        chart.data.datasets[0].data = data.chartA.slice();
+        chart.data.datasets[1].data = data.chartB.slice();
+        chart.update("none");
+      }
+    } catch (err) {
+      console.error("chart update error", err);
+    }
+  }, [data.chartA, data.chartB]);
 
   return <canvas ref={canvasRef} />;
 };
