@@ -1,10 +1,11 @@
 .sidebar {
-    height: 100%;
+    bottom: 0;
+    height: 100vh;
     left: 0;
-    overflow: auto;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 240px;
+    z-index: 2;
     .sidebar-top {
         align-items: center;
         display: flex;

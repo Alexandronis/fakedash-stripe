@@ -1,15 +1,17 @@
 .header-wrapper {
     align-items: center;
+    background: #fff;
     display: flex;
     flex-direction: row;
     justify-content: center;
     height: 60px;
     left: 0;
-    right: 0;
     padding: 0 15px 0 0;
-    position: absolute;
+    position: fixed;
+    right: 0;
     top: 0;
     width: 100vw;
+    z-index: 1;
     .header-inner-wrapper {
         box-sizing: border-box;
         margin: 0 auto;
