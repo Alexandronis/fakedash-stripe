@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useTranslation } from "react-i18next";
 import { useSettings } from "../../../context/SettingsContext";
-import "./balanceModal.scss";
+import AvatarModal from "../avatarModal";
+import "./homeModal.scss";
 
-const BalanceModal = ({ isOpen, onClose }: any) => {
+const HomeModal = ({ isOpen, onClose }: any) => {
   const { i18n } = useTranslation();
   const { totalEarnings, setTotalEarnings, currencySign, setCurrencySign } = useSettings();
   const [value, setValue] = useState(totalEarnings.toFixed(2));
@@ -44,15 +45,13 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
         <span className="modal-close" onClick={onClose}>×</span>
         <h2 className="modal-logo">
           <a href="http://fakedash.com/my-account/">
-            <img src="assets/logo.png" alt=""/>
+            <img src="/fakedash-logo.png" alt=""/>
           </a>
         </h2>
         <form id="settingsForm" onSubmit={handleSave}>
-
           <div className="settings-form-group">
             <div className="settings-form-group-inner">
               <label htmlFor="totalEarnings">Total Earnings</label>
-
               <div className="settings-input-wrapper">
                 <span className="settings-currency-symbol">{currencySign}</span>
                 <input
@@ -61,6 +60,38 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                 />
+              </div>
+            </div>
+            <div className="settings-form-group-inner">
+              <label htmlFor="previousMonthEarnings">Day Before</label>
+              <div className="settings-input-wrapper number">
+                <input
+                  type="number"
+                  id="previousMonthEarnings"
+                  placeholder="10"
+                />
+                <span className="settings-percentage">%</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="settings-form-group">
+            <div className="settings-form-group-inner">
+              <label htmlFor="storeName">Total Earnings</label>
+              <div className="settings-input-wrapper">
+                <input
+                  type="text"
+                  id="storeName"
+                  placeholder="DASHNAMEHERE"
+                />
+              </div>
+            </div>
+            <div className="settings-form-group-inner">
+              <label htmlFor="previousMonthEarnings">Day Before</label>
+              <div className="settings-input-wrapper">
+                <button type="button" id="change_avatar" className="settings-save-btn">
+                  Edit Avatar
+                </button>
               </div>
             </div>
           </div>
@@ -91,6 +122,56 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
             </div>
           </div>
 
+          <div className="settings-form-group">
+            <div className="settings-form-group-inner">
+              <label htmlFor="payoutPercent">Payout</label>
+              <div className="settings-input-wrapper number">
+                <input
+                  type="number"
+                  id="payoutPercent"
+                  placeholder="10"
+                />
+                <span className="settings-percentage">%</span>
+              </div>
+            </div>
+            <div className="settings-form-group-inner">
+              <label htmlFor="failedPayments">Failed Payments</label>
+              <div className="settings-input-wrapper number">
+                <input
+                  type="number"
+                  id="failedPayments"
+                  placeholder="4"
+                />
+                <span className="settings-percentage">%</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="settings-form-group">
+            <div className="settings-form-group-inner">
+              <label htmlFor="linkPayments">Link Payments</label>
+              <div className="settings-input-wrapper number">
+                <input
+                  type="number"
+                  id="linkPayments"
+                  placeholder="0"
+                />
+                <span className="settings-percentage">%</span>
+              </div>
+            </div>
+            <div className="settings-form-group-inner">
+              <label htmlFor="refunds">Refunds</label>
+              <div className="settings-input-wrapper number">
+                <input
+                  type="number"
+                  id="refunds"
+                  placeholder="0"
+                />
+                <span className="settings-percentage">%</span>
+              </div>
+            </div>
+          </div>
+
           <div className="settings-form-group save">
             <button type="submit" className="settings-save-btn">Save Changes</button>
           </div>
@@ -101,9 +182,10 @@ const BalanceModal = ({ isOpen, onClose }: any) => {
           </div>
         </form>
       </div>
-    </div>,
+    </div>
+    ,
     document.body
   );
 };
 
-export default BalanceModal;
+export default HomeModal;

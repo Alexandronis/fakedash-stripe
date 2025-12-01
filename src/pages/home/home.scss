@@ -370,6 +370,14 @@
                             padding: 16px;
                             .bottom-section-single-header {
                                 min-height: 32px;
+                                .bottom-section-single-header-inner-wrapper {
+                                    .gross-amount {
+                                        color: rgb(53, 58, 68);
+                                        font-size: 20px;
+                                        font-weight: 700;
+                                        line-height: 28px;
+                                    }
+                                }
                                 .bottom-section-single-header-inner {
                                     align-items: center;
                                     display: flex;

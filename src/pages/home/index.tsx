@@ -259,31 +259,34 @@ const HomePage: React.FC = () => {
                 <div className="bottom-section-single-inner">
                   <div className="bottom-section-single-header">
                     <div className="bottom-graph-inner">
-                      <div className="bottom-section-single-header-inner">
-                        <span className="single-title">Gross volume</span>
-                        <a href="#" className="single-icon" onClick={(e) => e.preventDefault()}>
-                          <svg
-                            aria-hidden="false"
-                            aria-label="Info"
-                            width="12"
-                            height="12"
-                            viewBox="0 0 12 12"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="rgb(108, 118, 136)"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M8.75 1.75h-5.5a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5h5.5a1.5 1.5 0 0 0 1.5-1.5v-5.5a1.5 1.5 0 0 0-1.5-1.5ZM3.25.25a3 3 0 0 0-3 3v5.5a3 3 0 0 0 3 3h5.5a3 3 0 0 0 3-3v-5.5a3 3 0 0 0-3-3h-5.5Z"
-                            />
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M4.482 6.5a.7.7 0 0 1 .7-.7h1.09a.7.7 0 0 1 .7.7v2a.7.7 0 1 1-1.4 0V7.2h-.39a.7.7 0 0 1-.7-.7Z"
-                            />
-                            <path d="M5 4a1.001 1.001 0 0 1 2 0 1.001 1.001 0 0 1-2 0Z"/>
-                          </svg>
-                        </a>
+                      <div className="bottom-section-single-header-inner-wrapper">
+                        <div className="bottom-section-single-header-inner">
+                          <span className="single-title">Gross volume</span>
+                          <a href="#" className="single-icon" onClick={(e) => e.preventDefault()}>
+                            <svg
+                              aria-hidden="false"
+                              aria-label="Info"
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="rgb(108, 118, 136)"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M8.75 1.75h-5.5a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5h5.5a1.5 1.5 0 0 0 1.5-1.5v-5.5a1.5 1.5 0 0 0-1.5-1.5ZM3.25.25a3 3 0 0 0-3 3v5.5a3 3 0 0 0 3 3h5.5a3 3 0 0 0 3-3v-5.5a3 3 0 0 0-3-3h-5.5Z"
+                              />
+                              <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M4.482 6.5a.7.7 0 0 1 .7-.7h1.09a.7.7 0 0 1 .7.7v2a.7.7 0 1 1-1.4 0V7.2h-.39a.7.7 0 0 1-.7-.7Z"
+                              />
+                              <path d="M5 4a1.001 1.001 0 0 1 2 0 1.001 1.001 0 0 1-2 0Z"/>
+                            </svg>
+                          </a>
+                        </div>
+                        <div className="gross-amount">$140,349.00</div>
                       </div>
                       <div className="bottom-section-explore">
                         <a href="#" className="bottom-section-explore-link" onClick={(e) => e.preventDefault()}>

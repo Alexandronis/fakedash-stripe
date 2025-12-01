@@ -77,6 +77,13 @@
                             left: 0.8rem;
                             position: absolute;
                         }
+                        .settings-percentage {
+                            color: #dbfc54;
+                            font-size: 14px;
+                            font-weight: 400;
+                            position: absolute;
+                            right: 0.8rem;
+                        }
                         input {
                             background-color: black;
                             border: 2px solid #666666;
@@ -94,6 +101,26 @@
                                 border-color: #dbfc54;
                                 outline: none;
                             }
+                        }
+                        &.number {
+                            input {
+                                padding-left: 0.6rem;
+                                padding-right: 28px;
+                            }
+                        }
+                        .settings-save-btn {
+                            background: transparent;
+                            border: 1px solid #DBFC54;
+                            border-radius: 8px;
+                            color: white;
+                            cursor: pointer;
+                            font-size: 14px;
+                            font-weight: bold;
+                            letter-spacing: 1px;
+                            line-height: normal;
+                            padding: 0.6rem;
+                            text-transform: none;
+                            width: 100%;
                         }
                     }
                     select {

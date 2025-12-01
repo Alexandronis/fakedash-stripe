@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentPath } from "../../../utils/useCurrentPath";
 import BalanceModal from "../../modals/balanceModal";
+import HomeModal from "../../modals/homeModal";
 import "./header.scss";
 
 const Header: React.FC = () => {
@@ -215,7 +216,10 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <BalanceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      { isBalancesPage ?
+        <BalanceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> :
+        <HomeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      }
     </div>
   );
 };
