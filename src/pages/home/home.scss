@@ -392,15 +392,28 @@
                                         .line-chart-first {
                                             background: rgb(153, 102, 255);
                                             border-radius: 4px 0 0 4px;
+                                            cursor: default;
                                             flex-basis: 96.0157%;
+                                            &:hover {
+                                                opacity: 0.8;
+                                            }
                                         }
                                         .line-chart-last {
                                             background: rgb(237, 104, 4);
                                             border-radius: 0 4px 4px 0;
+                                            cursor: default;
                                             flex-basis: 3.9843%;
                                             height: 16px;
                                             margin-left: 1px;
                                             min-width: 4px;
+                                            &:hover {
+                                                opacity: 0.8;
+                                            }
+                                        }
+                                        &.line-chart-methods {
+                                            .line-chart-last {
+                                                background: rgb(0, 85, 188);
+                                            }
                                         }
                                     }
                                     .line-chart-details {
