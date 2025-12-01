@@ -4,6 +4,7 @@ import HourlyGraph from '../../components/charts/hourlyGraph';
 import { useHomeData } from "../../context/HomeDataContext";
 
 import './home.scss';
+import MonthlyGraph from "../../components/charts/monthlyChart";
 const HomePage: React.FC = () => {
   const [primary, setPrimary] = useState({ value: null, hour: null });
   const [secondary, setSecondary] = useState({ value: null, hour: null });
@@ -325,6 +326,9 @@ const HomePage: React.FC = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+                <div className="monthly-graph">
+                  <MonthlyGraph />
                 </div>
               </div>
 
