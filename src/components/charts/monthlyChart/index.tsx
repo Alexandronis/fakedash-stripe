@@ -55,17 +55,16 @@ const MonthlyGraph = () => {
         labels,
         datasets: [
           {
-            label: "Monthly",
-            data: initialData,
+            label: "MonthlyLine",
+            data: initialData, // raw numbers
             borderColor: "#9966FF",
-            backgroundColor: "#9966FF",
-            tension: 0,
-            pointRadius: 5,
-            pointHoverRadius: 7,
             borderWidth: 3,
-            pointBackgroundColor: "#9966FF",
-            pointBorderColor: "#9966FF",
-          }
+            tension: 0, // straight line segments
+            pointRadius: 0, // hide dots by default
+            pointHoverRadius: 6, // show dots on hover
+            pointHoverBackgroundColor: "#9966FF",
+            pointHoverBorderColor: "#9966FF",
+          },
         ],
       },
       options: {
