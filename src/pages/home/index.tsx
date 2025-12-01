@@ -246,6 +246,64 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="home-bottom-sections">
+
+              <div className="bottom-section-single">
+                <div className="bottom-section-single-inner">
+                  <div className="bottom-section-single-header">
+                    <div className="bottom-graph-inner">
+                      <div className="bottom-section-single-header-inner">
+                        <span className="single-title">Gross volume</span>
+                        <a href="#" className="single-icon" onClick={(e) => e.preventDefault()}>
+                          <svg
+                            aria-hidden="false"
+                            aria-label="Info"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="rgb(108, 118, 136)"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M8.75 1.75h-5.5a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5h5.5a1.5 1.5 0 0 0 1.5-1.5v-5.5a1.5 1.5 0 0 0-1.5-1.5ZM3.25.25a3 3 0 0 0-3 3v5.5a3 3 0 0 0 3 3h5.5a3 3 0 0 0 3-3v-5.5a3 3 0 0 0-3-3h-5.5Z"
+                            />
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M4.482 6.5a.7.7 0 0 1 .7-.7h1.09a.7.7 0 0 1 .7.7v2a.7.7 0 1 1-1.4 0V7.2h-.39a.7.7 0 0 1-.7-.7Z"
+                            />
+                            <path d="M5 4a1.001 1.001 0 0 1 2 0 1.001 1.001 0 0 1-2 0Z"/>
+                          </svg>
+                        </a>
+                      </div>
+                      <div className="bottom-section-explore">
+                        <a href="#" className="bottom-section-explore-link" onClick={(e) => e.preventDefault()}>
+                          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"
+                               xmlns="http://www.w3.org/2000/svg"
+                               className="⚙   as-y as-z as-10 as-11 as-9x as-6f as-6g ⚙psn2hp">
+                            <path fillRule="evenodd" clipRule="evenodd"
+                                  d="M4.67 1.25A2.33 2.33 0 0 0 2.44 2.9L.179 10.302A4.097 4.097 0 0 0 0 11.5a3.5 3.5 0 1 0 7 0V9.394C7.47 9.093 7.786 9 8 9c.214 0 .53.093 1 .394V11.5a3.5 3.5 0 1 0 7 0 4.1 4.1 0 0 0-.179-1.197L13.56 2.899A2.33 2.33 0 0 0 9 3.58v.581A3.127 3.127 0 0 0 8 4c-.348 0-.683.055-1 .161v-.58A2.33 2.33 0 0 0 4.67 1.25Zm.83 7.377V3.58a.83.83 0 0 0-1.625-.242l-1.478 4.84A3.497 3.497 0 0 1 3.5 8c.744 0 1.433.232 2 .627Zm-4 2.873a2 2 0 1 0 4 0 2 2 0 0 0-4 0Zm11 2a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm0-5.5c.386 0 .757.062 1.103.177l-1.479-4.84a.83.83 0 0 0-1.624.243v5.047a3.484 3.484 0 0 1 2-.627ZM7 5.838v1.868c.33-.131.664-.206 1-.206.336 0 .67.075 1 .206V5.838A1.615 1.615 0 0 0 8 5.5c-.358 0-.692.106-1 .338Z"></path>
+                          </svg>
+                          <span className="bottom-section-explore-text">Explore</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bottom-section-single-data">
+                    <div className="bottom-section-single-top">
+                      {/* Second chart goes here */}
+                    </div>
+                    <div className="bottom-section-single-bottom">
+                    <div className="bottom-section-single-left">Updated 2:12 PM</div>
+                      <div className="bottom-section-single-right">
+                        <a href="#" className="" onClick={(e) => e.preventDefault()}>View more</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bottom-section-single">
                 <div className="bottom-section-single-inner">
                   <div className="bottom-section-single-header">
