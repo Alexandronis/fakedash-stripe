@@ -246,7 +246,88 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="home-bottom-sections">
-
+              <div className="bottom-section-single">
+                <div className="bottom-section-single-inner">
+                  <div className="bottom-section-single-header">
+                    <div className="bottom-section-single-header-inner">
+                      <span className="single-title">Payments</span>
+                      <a href="#" className="single-icon" onClick={(e) => e.preventDefault()}>
+                        <svg
+                          aria-hidden="false"
+                          aria-label="Info"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="rgb(108, 118, 136)"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M8.75 1.75h-5.5a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5h5.5a1.5 1.5 0 0 0 1.5-1.5v-5.5a1.5 1.5 0 0 0-1.5-1.5ZM3.25.25a3 3 0 0 0-3 3v5.5a3 3 0 0 0 3 3h5.5a3 3 0 0 0 3-3v-5.5a3 3 0 0 0-3-3h-5.5Z"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.482 6.5a.7.7 0 0 1 .7-.7h1.09a.7.7 0 0 1 .7.7v2a.7.7 0 1 1-1.4 0V7.2h-.39a.7.7 0 0 1-.7-.7Z"
+                          />
+                          <path d="M5 4a1.001 1.001 0 0 1 2 0 1.001 1.001 0 0 1-2 0Z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div className="bottom-section-single-data">
+                    <div className="bottom-section-single-top">
+                      <div className="line-chart">
+                        <a href="#" className="line-chart-first" onClick={(e) => e.preventDefault()}/>
+                        <a href="#" className="line-chart-last" onClick={(e) => e.preventDefault()}/>
+                      </div>
+                      <div className="line-chart-details">
+                        <div className="line-chart-details-inner">
+                          <div className="line-chart-square">
+                            <div className="line-chart-square-inner"/>
+                          </div>
+                          <div className="line-chart-status">Succeeded</div>
+                          <div className="line-chart-amount">$155,595.34</div>
+                        </div>
+                      </div>
+                      <div className="line-chart-details second not-first">
+                        <div className="line-chart-details-inner">
+                          <div className="line-chart-square">
+                            <div className="line-chart-square-inner"/>
+                          </div>
+                          <div className="line-chart-status">Uncaptured</div>
+                          <div className="line-chart-amount">$0.00</div>
+                        </div>
+                      </div>
+                      <div className="line-chart-details third not-first">
+                        <div className="line-chart-details-inner">
+                          <div className="line-chart-square">
+                            <div className="line-chart-square-inner"/>
+                          </div>
+                          <div className="line-chart-status">Refunded</div>
+                          <div className="line-chart-amount">$0.00</div>
+                        </div>
+                      </div>
+                      <div className="line-chart-details fourth not-first">
+                        <div className="line-chart-details-inner">
+                          <div className="line-chart-square">
+                            <div className="line-chart-square-inner"/>
+                          </div>
+                          <div className="line-chart-status">Failed</div>
+                          <div className="line-chart-amount">$6,223.81</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bottom-section-single-bottom">
+                      <div className="bottom-section-single-left">Updated 2:12 PM</div>
+                      <div className="bottom-section-single-right">
+                        <a href="#" className="" onClick={(e) => e.preventDefault()}>View more</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

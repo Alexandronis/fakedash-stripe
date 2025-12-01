@@ -343,6 +343,197 @@
                     grid-template-columns: repeat(6,1fr);
                     container-name: home-performance-tile-container;
                     padding: 8px;
+                    .bottom-section-single {
+                        background: rgb(255, 255, 255);
+                        border-radius: 6px;
+                        box-sizing: border-box;
+                        grid-column: span 2;
+                        height: 404px;
+                        position: relative;
+                        max-width: 100%;
+                        .bottom-section-single-inner {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 16px;
+                            justify-content: flex-start;
+                            padding: 10px 16px 16px;
+                            .bottom-section-single-header {
+                                min-height: 32px;
+                                .bottom-section-single-header-inner {
+                                    align-items: center;
+                                    display: flex;
+                                    flex-direction: row;
+                                    gap: 4px;
+                                    justify-content: normal;
+                                    .single-title {
+                                        color: rgb(33, 37, 44);
+                                        font-size: 14px;
+                                        font-weight: 600;
+                                        line-height: 20px;
+                                    }
+                                }
+                            }
+                            .bottom-section-single-data {
+                                .bottom-section-single-top {
+                                    align-items: normal;
+                                    box-sizing: border-box;
+                                    display: flex;
+                                    gap: 24px;
+                                    flex-direction: column;
+                                    justify-content: normal;
+                                    margin-top: -8px;
+                                    .line-chart {
+                                        align-items: stretch;
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: normal;
+                                        height: 16px;
+                                        width: 100%;
+                                        .line-chart-first {
+                                            background: rgb(153, 102, 255);
+                                            border-radius: 4px 0 0 4px;
+                                            flex-basis: 96.0157%;
+                                        }
+                                        .line-chart-last {
+                                            background: rgb(237, 104, 4);
+                                            border-radius: 0 4px 4px 0;
+                                            flex-basis: 3.9843%;
+                                            height: 16px;
+                                            margin-left: 1px;
+                                            min-width: 4px;
+                                        }
+                                    }
+                                    .line-chart-details {
+                                        cursor: pointer;
+                                        margin-top: -16px;
+                                        .line-chart-details-inner {
+                                            align-items: center;
+                                            display: grid;
+                                            column-gap: 12px;
+                                            grid-template-areas: "icon heading trailing";
+                                            grid-template-columns: min-content 1fr auto;
+                                            grid-template-rows: auto;
+                                            padding: 12px 0;
+                                            position: relative;
+                                            row-gap: 8px;
+                                            .line-chart-square {
+                                                align-items: center;
+                                                display: flex;
+                                                grid-area: 1/1;
+                                                height: 24px;
+                                                position: relative;
+                                                .line-chart-square-inner {
+                                                    background: rgb(153, 102, 255);
+                                                    border-radius: 4px;
+                                                    height: 12px;
+                                                    width: 12px;
+                                                }
+                                            }
+                                            .line-chart-status {
+                                                color: rgb(53, 58, 68);
+                                                font-size: 14px;
+                                                font-weight: 400;
+                                                line-height: 20px;
+                                                padding: 2px 0;
+                                                position: relative;
+                                            }
+                                            .line-chart-amount {
+                                                color: rgb(53, 58, 68);
+                                                font-size: 14px;
+                                                font-weight: 600;
+                                                line-height: 20px;
+                                                position: relative;
+                                            }
+                                        }
+                                        &.not-first {
+                                            margin-top: -24px;
+                                            .line-chart-details-inner {
+                                                border-top: 1px solid rgb(235, 238, 241);
+                                            }
+                                        }
+                                        &:last-child {
+                                            .line-chart-details-inner {
+                                                border-bottom: 1px solid rgb(235, 238, 241);
+                                            }
+                                        }
+                                        &:hover {
+                                            .line-chart-details-inner {
+                                                border-color: transparent;
+                                                &:before {
+                                                    background: rgb(245, 246, 248);
+                                                    border-radius: 8px;
+                                                    bottom: 0;
+                                                    content: '';
+                                                    display: block;
+                                                    grid-area: 1/1/-1/-1;
+                                                    left: 0;
+                                                    margin: -8px;
+                                                    position: absolute;
+                                                    right: 0;
+                                                    top: 0;
+                                                    z-index: 0;
+                                                }
+                                            }
+                                            &+.line-chart-details .line-chart-details-inner {
+                                                border-top-color: transparent;
+                                            }
+                                        }
+                                        &.second {
+                                            .line-chart-details-inner {
+                                                .line-chart-square {
+                                                    .line-chart-square-inner {
+                                                        background: rgb(0, 85, 188);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &.third {
+                                            .line-chart-details-inner {
+                                                .line-chart-square {
+                                                    .line-chart-square-inner {
+                                                        background: rgb(0,161,194);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &.fourth {
+                                            .line-chart-details-inner {
+                                                .line-chart-square {
+                                                    .line-chart-square-inner {
+                                                        background: rgb(237, 104, 4);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .bottom-section-single-bottom {
+                                    align-items: center;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding-top: 10px;
+                                    .bottom-section-single-left {
+                                        color: rgb(89, 97, 113);
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                    }
+                                    .bottom-section-single-right {
+                                        a {
+                                            color: rgb(98, 90, 250);
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 20px;
+                                            text-decoration: none;
+                                            &:hover {
+                                                color: rgb(26, 27, 37);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
