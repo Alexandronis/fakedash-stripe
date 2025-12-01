@@ -1,11 +1,15 @@
 // @ts-nocheck
 import React, { useState } from 'react';
 import HourlyGraph from '../../components/charts/hourlyGraph';
+import { useHomeData } from "../../context/HomeDataContext";
 
 import './home.scss';
 const HomePage: React.FC = () => {
   const [primary, setPrimary] = useState({ value: null, hour: null });
   const [secondary, setSecondary] = useState({ value: null, hour: null });
+  const { data } = useHomeData();
+  const expectedTomorrow = (data.totalEarnings * data.payoutPercent) / 100; // same formula for example
+  const estimatedFuturePayouts = data.totalEarnings * 0.03221;
 
   return (
     <main className="home-page">
@@ -113,7 +117,9 @@ const HomePage: React.FC = () => {
                         View
                       </a>
                     </div>
-                    <div className="main-right-middle">$5,010.17</div>
+                    <div className="main-right-middle">
+                      {data.currencySign}{estimatedFuturePayouts.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </div>
                     <div className="main-right-bottom">Estimated future payouts</div>
                   </div>
                 </div>
@@ -125,7 +131,9 @@ const HomePage: React.FC = () => {
                         View
                       </a>
                     </div>
-                    <div className="main-right-middle">$15,559.53</div>
+                    <div className="main-right-middle">
+                      {data.currencySign}{expectedTomorrow.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </div>
                     <div className="main-right-bottom">Expected tomorrow</div>
                   </div>
                 </div>
