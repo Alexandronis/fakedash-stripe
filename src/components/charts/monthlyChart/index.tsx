@@ -77,28 +77,39 @@ const MonthlyGraph = () => {
         plugins: {
           tooltip: {
             enabled: false,
-            external: (context) => {
+            external: function (context) {
               const tooltipEl = document.getElementById("monthly-tooltip");
+              const tooltipModel = context.tooltip;
               if (!tooltipEl) return;
 
-              const tooltipModel = context.tooltip;
               if (tooltipModel.opacity === 0) {
                 tooltipEl.style.opacity = "0";
                 return;
               }
 
-              if (tooltipModel.dataPoints) {
-                const dp = tooltipModel.dataPoints[0];
+              if (tooltipModel.dataPoints && tooltipModel.dataPoints.length) {
+                const dataPoint = tooltipModel.dataPoints[0];
+
+                // Set content
                 tooltipEl.innerHTML = `
-                  <div class="tooltip-date">${dp.label}</div>
-                  <div class="tooltip-value">${dp.raw.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</div>
-                `;
-                const canvasPosition = context.chart.canvas.getBoundingClientRect();
-                tooltipEl.style.left = canvasPosition.left + dp.element.x + "px";
-                tooltipEl.style.top = canvasPosition.top + dp.element.y - 40 + "px";
+      <div class="tooltip-date">${dataPoint.label}</div>
+      <div class="tooltip-value">$${dataPoint.raw.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}</div>
+    `;
+
+                // Position tooltip relative to canvas
+                const canvasRect = context.chart.canvas.getBoundingClientRect();
+                const parentRect = context.chart.canvas.parentElement.getBoundingClientRect();
+
                 tooltipEl.style.opacity = "1";
+                tooltipEl.style.left = `${dataPoint.element.x - tooltipEl.offsetWidth / 2}px`;
+                tooltipEl.style.top = `${dataPoint.element.y - tooltipEl.offsetHeight - 8}px`;
               }
-            },
+            }
+
+            ,
           },
           dragData: {
             enabled: true,

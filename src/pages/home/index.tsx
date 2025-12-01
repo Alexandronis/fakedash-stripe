@@ -328,7 +328,23 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
                 <div className="monthly-graph">
-                  <MonthlyGraph />
+                  <div
+                    id="monthly-tooltip"
+                    style={{
+                      position: "absolute",
+                      pointerEvents: "none",
+                      opacity: 0,
+                      background: "rgba(0,0,0,0.8)",
+                      color: "#fff",
+                      padding: "6px 8px",
+                      borderRadius: "4px",
+                      fontSize: "12px",
+                      transition: "all 0.1s ease",
+                      whiteSpace: "nowrap",
+                      zIndex: 1000,
+                    }}
+                  />
+                  <MonthlyGraph/>
                 </div>
               </div>
 
