@@ -92,8 +92,8 @@ const MonthlyGraph = () => {
 
                 // Set content
                 tooltipEl.innerHTML = `
-      <div class="tooltip-date">${dataPoint.label}</div>
-      <div class="tooltip-value">$${dataPoint.raw.toLocaleString(undefined, {
+                    <div class="tooltip-date">${dataPoint.label}</div>
+                    <div class="tooltip-value">$${dataPoint.raw.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}</div>
