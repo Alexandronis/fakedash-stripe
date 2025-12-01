@@ -15,6 +15,27 @@ const HomePage: React.FC = () => {
   const refundedEarnings = (data.totalEarnings * data.refundsPercent) / 100;
   const linkEarnings = (data.totalEarnings * data.linkPaymentsPercent) / 100;
 
+  const primaryValue = primary.value;
+    const secondaryValue = secondary.value;
+
+    // Avoid division by zero
+    const hasValidValues = secondaryValue !== 0 && primaryValue !== null && secondaryValue !== null;
+
+    let percent = 0;
+    let badgeClass = "";
+
+    if (hasValidValues) {
+      // Calculate percentage change
+      const diff = primaryValue - secondaryValue;
+      percent = ((diff / secondaryValue) * 100).toFixed(1);
+
+      // Set class based on upgrade/downgrade
+      badgeClass = diff >= 0 ? "badge-green" : "badge-warning";
+    } else {
+      badgeClass = "badge-warning";
+      percent = "0.0";
+    }
+
   return (
     <main className="home-page">
       <div className="content-wrapper">
@@ -29,27 +50,33 @@ const HomePage: React.FC = () => {
                     <div className="main-text-left">
                       <div className="left-top">
                         <div className="left-item-first">
-                          <button className="left-item-button">
-                            <div className="button-inner">
-                              <span className="button-text">Gross volume</span>
-                              <div className="button-icon">
-                                <svg
-                                  aria-hidden="true"
-                                  className="SVGInline-svg SVGInline--cleaned-svg SVG-svg Icon-svg Icon--chevronDown-svg Icon-color-svg Icon-color--gray600-svg"
-                                  height="8"
-                                  width="8"
-                                  viewBox="0 0 16 16"
-                                  fill="rgb(84, 89, 105)"
-                                  xmlns="http://www.w3.org/2000/svg">
-                                  <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M.381 4.381a.875.875 0 0 1 1.238 0L8 10.763l6.381-6.382A.875.875 0 1 1 15.62 5.62l-7 7a.875.875 0 0 1-1.238 0l-7-7a.875.875 0 0 1 0-1.238Z"
-                                  />
-                                </svg>
+                          <div className="left-item-button-wrapper">
+                            <button className="left-item-button">
+                              <div className="button-inner">
+                                <span className="button-text">Gross volume</span>
+                                <div className="button-icon">
+                                  <svg
+                                    aria-hidden="true"
+                                    className="SVGInline-svg SVGInline--cleaned-svg SVG-svg Icon-svg Icon--chevronDown-svg Icon-color-svg Icon-color--gray600-svg"
+                                    height="8"
+                                    width="8"
+                                    viewBox="0 0 16 16"
+                                    fill="rgb(84, 89, 105)"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                      fillRule="evenodd"
+                                      clipRule="evenodd"
+                                      d="M.381 4.381a.875.875 0 0 1 1.238 0L8 10.763l6.381-6.382A.875.875 0 1 1 15.62 5.62l-7 7a.875.875 0 0 1-1.238 0l-7-7a.875.875 0 0 1 0-1.238Z"
+                                    />
+                                  </svg>
+                                </div>
                               </div>
-                            </div>
-                          </button>
+                            </button>
+                            { percent !== '0.0' ?
+                              <div className="compare-badge">
+                                <span className={badgeClass}>{percent > 0 ? `+${percent}%` : `${percent}%`}</span>
+                              </div> : null }
+                          </div>
                           <div className="left-item-amount">
                             {primary.value != null
                               ? `$${primary.value.toLocaleString()}`
