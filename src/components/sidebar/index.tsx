@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { useAvatar } from "../../context/AvatarContext";
+import { useHomeData } from "../../context/HomeDataContext";
 import HomeIcon from '../../assets/home.svg';
 import HomeIconActive from '../../assets/home-active.svg';
 import BalancesIcon from '../../assets/balances.svg';
@@ -23,6 +24,7 @@ const Sidebar: React.FC = () => {
   const activatableIds = ['dashboard', 'balance/overview'];
   const { t } = useTranslation();
   const { avatarUrl } = useAvatar();
+  const { data } = useHomeData();
 
   return (
     <aside className="sidebar">
@@ -40,7 +42,7 @@ const Sidebar: React.FC = () => {
           </div>
           <div className="sidebar-top-text-wrapper">
             <div className="sidebar-top-text">
-              DASHNAMEHERE
+              {data.storeName}
             </div>
           </div>
           <img src={ArrowIcon} alt="Arrow"/>

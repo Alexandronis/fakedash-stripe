@@ -10,6 +10,9 @@ const HomePage: React.FC = () => {
   const { data } = useHomeData();
   const expectedTomorrow = (data.totalEarnings * data.payoutPercent) / 100; // same formula for example
   const estimatedFuturePayouts = data.totalEarnings * 0.03221;
+  const failedEarnings = (data.totalEarnings * data.failedPaymentsPercent) / 100;
+  const refundedEarnings = (data.totalEarnings * data.refundsPercent) / 100;
+  const linkEarnings = (data.totalEarnings * data.linkPaymentsPercent) / 100;
 
   return (
     <main className="home-page">
@@ -294,7 +297,9 @@ const HomePage: React.FC = () => {
                             </svg>
                           </a>
                         </div>
-                        <div className="gross-amount">$140,349.00</div>
+                        <div className="gross-amount">
+                          {data.currencySign}{data.totalEarnings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </div>
                       </div>
                       <div className="bottom-section-explore">
                         <a href="#" className="bottom-section-explore-link" onClick={(e) => e.preventDefault()}>
@@ -365,7 +370,9 @@ const HomePage: React.FC = () => {
                             <div className="line-chart-square-inner"/>
                           </div>
                           <div className="line-chart-status">Succeeded</div>
-                          <div className="line-chart-amount">$155,595.34</div>
+                          <div className="line-chart-amount">
+                            {data.currencySign}{data.totalEarnings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          </div>
                         </div>
                       </div>
                       <div className="line-chart-details second not-first">
@@ -383,7 +390,9 @@ const HomePage: React.FC = () => {
                             <div className="line-chart-square-inner"/>
                           </div>
                           <div className="line-chart-status">Refunded</div>
-                          <div className="line-chart-amount">$0.00</div>
+                          <div className="line-chart-amount">
+                            {data.currencySign}{refundedEarnings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          </div>
                         </div>
                       </div>
                       <div className="line-chart-details fourth not-first">
@@ -392,7 +401,9 @@ const HomePage: React.FC = () => {
                             <div className="line-chart-square-inner"/>
                           </div>
                           <div className="line-chart-status">Failed</div>
-                          <div className="line-chart-amount">$6,223.81</div>
+                          <div className="line-chart-amount">
+                            {data.currencySign}{failedEarnings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -448,7 +459,9 @@ const HomePage: React.FC = () => {
                             <div className="line-chart-square-inner"/>
                           </div>
                           <div className="line-chart-status">Card</div>
-                          <div className="line-chart-amount">$155,595.34</div>
+                          <div className="line-chart-amount">
+                            {data.currencySign}{data.totalEarnings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          </div>
                         </div>
                       </div>
                       <div className="line-chart-details second not-first">
@@ -457,7 +470,9 @@ const HomePage: React.FC = () => {
                             <div className="line-chart-square-inner"/>
                           </div>
                           <div className="line-chart-status">Link</div>
-                          <div className="line-chart-amount">$0.00</div>
+                          <div className="line-chart-amount">
+                            {data.currencySign}{linkEarnings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -470,7 +485,6 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
