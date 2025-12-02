@@ -227,20 +227,47 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
                 const chart = chartRef.current;
                 if (!chart) return;
 
-                // clone dataset array and set new value
+                // build new dataset array (preserve nulls)
                 const ds = chart.data.datasets[datasetIndex].data.map((v) =>
                   v === null ? null : Number(v)
                 );
 
                 ds[index] = value === null ? null : Number(value);
 
+                // Immediately write new values into the chart so it's visually correct
+                chart.data.datasets[datasetIndex].data = ds;
+                chart.update("none");
+
+                // Persist to context (and cookie)
                 if (datasetIndex === 0) {
                   updateMultiple({ chartA: ds });
+                  chart.data.datasets[0].data = ds.slice(); // IMPORTANT
                 } else {
                   updateMultiple({ chartB: ds });
+                  chart.data.datasets[1].data = ds.slice(); // IMPORTANT
                 }
+
+                chart.update('none');
+
+                // Notify parent/hovers on next tick (ensures context update has settled and
+                // prevents race/stale-value reads when you hover back to the same point)
+                setTimeout(() => {
+                  const ch = chartRef.current;
+                  if (!ch) return;
+
+                  const hour = ch.data.labels[index] ?? null;
+
+                  const valPrimary = (ch.data.datasets[0] && ch.data.datasets[0].data[index]) ?? null;
+                  const valSecondary = (ch.data.datasets[1] && ch.data.datasets[1].data[index]) ?? null;
+
+                  if (onHoverValueChangePrimary) {
+                    onHoverValueChangePrimary({ value: valPrimary, hour });
+                  }
+                  if (onHoverValueChangeSecondary) {
+                    onHoverValueChangeSecondary({ value: valSecondary, hour });
+                  }
+                }, 0);
               } catch (err) {
-                // ignore
                 console.error("drag onDragEnd error", err);
               }
             },
