@@ -107,9 +107,7 @@ const MonthlyGraph = () => {
                 tooltipEl.style.left = `${dataPoint.element.x - tooltipEl.offsetWidth / 2}px`;
                 tooltipEl.style.top = `${dataPoint.element.y - tooltipEl.offsetHeight - 8}px`;
               }
-            }
-
-            ,
+            },
           },
           dragData: {
             enabled: true,
@@ -138,9 +136,12 @@ const MonthlyGraph = () => {
               color: "#d8dee4",
               lineWidth: 1,
             },
+            border: {
+              display: false,      // <== disables axis border for Chart.js 4+
+            },
           },
           x: {
-            display: false,
+            display: true,
             ticks: {
               callback: (val, index) => {
                 if (index === 11) return labels[11]; // Nov12
@@ -148,6 +149,9 @@ const MonthlyGraph = () => {
                 return "";
               },
               color: "#6c7688",
+              autoSkip: false,
+              maxRotation: 0, // keep horizontal
+              minRotation: 0,
             },
             grid: {
               drawTicks: false,
@@ -158,6 +162,30 @@ const MonthlyGraph = () => {
           },
         },
       },
+      plugins: [{
+        // Plugin that draws vertical lines from x tick to first y grid line
+        beforeDraw: function(chart) {
+          const ctx = chart.ctx;
+          const xAxis = chart.scales.x;
+          const yAxis = chart.scales.y;
+
+          // Find pixel position of the bottom grid line (first tick on Y axis)
+          const yPixel = yAxis.getPixelForValue(yAxis.min);
+          const tickHeight = 5;
+          [11, 22].forEach(idx => { // Nov 12 and Nov 23 indexes
+            const xPixel = xAxis.getPixelForValue(chart.data.labels[idx]);
+            ctx.save();
+            ctx.beginPath();
+            ctx.strokeStyle = "#6c7688"; // tick color
+            ctx.lineWidth = 1; // tick thickness
+            // Draw a vertical line from bottom to grid line
+            ctx.moveTo(xPixel, xAxis.bottom - 15); // Bottom of chart area
+            ctx.lineTo(xPixel, yPixel); // Up to first grid line
+            ctx.stroke();
+            ctx.restore();
+          });
+        }
+      }],
     });
 
     return () => chartRef.current?.destroy();
