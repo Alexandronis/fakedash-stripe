@@ -121,8 +121,12 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
  onHoverValueChangeSecondary
 }) => {
   const canvasRef = useRef(null);
-  const chartRef = useRef(null);
+  const chartRef = useRef<any>(null);
   const { data, updateMultiple } = useHomeData();
+
+  // === FIX A: persistent refs used as the source-of-truth for dataset values
+  const datasetARef = useRef<(number | null)[]>([]);
+  const datasetBRef = useRef<(number | null)[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -162,14 +166,13 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
       "12:00 AM",
     ];
 
-    // read initial values from context (homeData)
+    // Determine if context arrays are all nulls (treat as missing)
+    const isChartANulls = Array.isArray(data.chartA) && data.chartA.length ? data.chartA.every(value => value === null) : true;
+    const isChartBNulls = Array.isArray(data.chartB) && data.chartB.length ? data.chartB.every(value => value === null) : true;
 
-    const isChartANulls = data.chartA.every(value => value === null);
-    const isChartBNulls = data.chartB.every(value => value === null);
-    console.log(isChartANulls);
-
-    const valuesPrimary = isChartANulls ? defaultChartA :data.chartA.slice();
-    const valuesSecondary = isChartBNulls ? defaultChartB :data.chartB.slice();
+    // === FIX A: initialize refs ONCE from context/defaults
+    datasetARef.current = isChartANulls ? defaultChartA.slice() : data.chartA.slice();
+    datasetBRef.current = isChartBNulls ? defaultChartB.slice() : data.chartB.slice();
 
     chartRef.current = new Chart(ctx, {
       type: "line",
@@ -179,12 +182,12 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
           // PRIMARY (purple)
           {
             label: "PrimaryLine",
-            data: valuesPrimary,
+            data: datasetARef.current,
             borderColor: "#635bff",
             borderWidth: 1,
             tension: 0,
             pointRadius: 0,
-            pointHitRadius: 10,             // <-- REQUIRED FOR DRAGGING
+            pointHitRadius: 10, // required for dragging detection
             pointHoverRadius: 4,
             pointHoverBackgroundColor: "#635bff",
             pointHoverBorderColor: "#635bff",
@@ -193,12 +196,12 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
           // SECONDARY (gray)
           {
             label: "SecondaryLine",
-            data: valuesSecondary,
+            data: datasetBRef.current,
             borderColor: "#C0C8D2",
             borderWidth: 1,
             tension: 0,
             pointRadius: 0,
-            pointHitRadius: 10,             // <-- REQUIRED FOR DRAGGING
+            pointHitRadius: 10, // required for dragging detection
             pointHoverRadius: 4,
             pointHoverBackgroundColor: "#C0C8D2",
             pointHoverBorderColor: "#C0C8D2",
@@ -222,41 +225,37 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
             round: 2,
             showTooltip: false,
             // onDragEnd receives (e, datasetIndex, index, value)
-            onDragEnd: (e, datasetIndex, index, value) => {
+            onDragEnd: (e: any, datasetIndex: number, index: number, value: number | null) => {
               try {
                 const chart = chartRef.current;
                 if (!chart) return;
 
-                // build new dataset array (preserve nulls)
-                const ds = chart.data.datasets[datasetIndex].data.map((v) =>
-                  v === null ? null : Number(v)
-                );
+                // === FIX A: update the proper REF array (preserve nulls)
+                const targetRef = datasetIndex === 0 ? datasetARef : datasetBRef;
+                const newArr = targetRef.current.slice();
 
-                ds[index] = value === null ? null : Number(value);
+                newArr[index] = value === null ? null : Number(value);
 
-                // Immediately write new values into the chart so it's visually correct
-                chart.data.datasets[datasetIndex].data = ds;
+                // write back to ref (source of truth)
+                targetRef.current = newArr.slice();
+
+                // write to chart internal dataset so visual remains updated
+                chart.data.datasets[datasetIndex].data = newArr.slice();
                 chart.update("none");
 
-                // Persist to context (and cookie)
+                // Persist to context (and cookie) - keep storing nulls as in your system
                 if (datasetIndex === 0) {
-                  updateMultiple({ chartA: ds });
-                  chart.data.datasets[0].data = ds.slice(); // IMPORTANT
+                  updateMultiple({ chartA: newArr });
                 } else {
-                  updateMultiple({ chartB: ds });
-                  chart.data.datasets[1].data = ds.slice(); // IMPORTANT
+                  updateMultiple({ chartB: newArr });
                 }
 
-                chart.update('none');
-
-                // Notify parent/hovers on next tick (ensures context update has settled and
-                // prevents race/stale-value reads when you hover back to the same point)
+                // Notify UI (hover-like) on next tick so parent blocks update
                 setTimeout(() => {
                   const ch = chartRef.current;
                   if (!ch) return;
 
-                  const hour = ch.data.labels[index] ?? null;
-
+                  const hour = (ch.data.labels && ch.data.labels[index]) ? ch.data.labels[index] : null;
                   const valPrimary = (ch.data.datasets[0] && ch.data.datasets[0].data[index]) ?? null;
                   const valSecondary = (ch.data.datasets[1] && ch.data.datasets[1].data[index]) ?? null;
 
@@ -274,13 +273,13 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
           },
         },
 
-        onHover(event, elements) {
+        onHover(event: any, elements: any) {
           const chart = chartRef.current;
           if (!chart) return;
 
           const hoveredIndex = elements && elements.length ? elements[0].index : null;
 
-          // store hover index and redraw
+          // store hover index and redraw dashed line plugin
           // @ts-ignore
           chart._hoverIndex = hoveredIndex;
           chart.draw();
@@ -293,11 +292,19 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
 
           const hour = labels[hoveredIndex];
 
+          // === FIX A: report values from REF arrays (source-of-truth)
+          const primaryVal = datasetARef.current && hoveredIndex < datasetARef.current.length
+            ? datasetARef.current[hoveredIndex]
+            : null;
+          const secondaryVal = datasetBRef.current && hoveredIndex < datasetBRef.current.length
+            ? datasetBRef.current[hoveredIndex]
+            : null;
+
           if (onHoverValueChangePrimary) {
-            onHoverValueChangePrimary({ value: isChartANulls ? defaultChartA[hoveredIndex] : data.chartA[hoveredIndex], hour });
+            onHoverValueChangePrimary({ value: primaryVal, hour });
           }
           if (onHoverValueChangeSecondary) {
-            onHoverValueChangeSecondary({ value: isChartBNulls ? defaultChartB[hoveredIndex] : data.chartB[hoveredIndex], hour });
+            onHoverValueChangeSecondary({ value: secondaryVal, hour });
           }
         },
 
@@ -340,13 +347,20 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
     if (!chart) return;
 
     try {
-      // update datasets in place
-      if (chart.data && chart.data.datasets && chart.data.datasets.length >= 2) {
-        const isChartANulls = data.chartA.every(value => value === null);
-        const isChartBNulls = data.chartB.every(value => value === null);
+      // build fresh arrays from context / defaults (preserve nulls)
+      const isChartANulls = Array.isArray(data.chartA) && data.chartA.length ? data.chartA.every(value => value === null) : true;
+      const isChartBNulls = Array.isArray(data.chartB) && data.chartB.length ? data.chartB.every(value => value === null) : true;
 
-        chart.data.datasets[0].data = isChartANulls ? defaultChartA : data.chartA.slice();
-        chart.data.datasets[1].data = isChartBNulls ? defaultChartB : data.chartB.slice();
+      const newA = isChartANulls ? defaultChartA.slice() : data.chartA.slice();
+      const newB = isChartBNulls ? defaultChartB.slice() : data.chartB.slice();
+
+      // === FIX A: update refs (source-of-truth) and chart datasets
+      datasetARef.current = newA;
+      datasetBRef.current = newB;
+
+      if (chart.data && chart.data.datasets && chart.data.datasets.length >= 2) {
+        chart.data.datasets[0].data = newA.slice();
+        chart.data.datasets[1].data = newB.slice();
         chart.update("none");
       }
     } catch (err) {
