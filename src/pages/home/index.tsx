@@ -365,8 +365,8 @@ const HomePage: React.FC = () => {
                       </div>
                     </div>
                     <div className="bottom-section-single-bottom">
-                    <div className="bottom-section-single-left">Updated 2:12 PM</div>
-                      <div className="bottom-section-single-right">
+                    <div className="bottom-section-single-left graph-left">Updated 2:12 PM</div>
+                      <div className="bottom-section-single-right graph-right">
                         <a href="#" className="" onClick={(e) => e.preventDefault()}>View more</a>
                       </div>
                     </div>
