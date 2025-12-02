@@ -186,7 +186,36 @@ const HourlyGraph: React.FC<HourlyGraphProps> = ({
             borderColor: "#635bff",
             borderWidth: 1,
             tension: 0,
-            pointRadius: 0,
+            pointRadius: (ctx) => {
+              const index = ctx.dataIndex;
+              const data = ctx.dataset.data;
+
+              // find last non-null data point
+              const reversedIdx = data.slice().reverse().findIndex(v => v !== null);
+              const lastIndex = reversedIdx === -1 ? -1 : data.length - 1 - reversedIdx;
+
+              return index === lastIndex ? 4 : 0; // same as hover radius
+            },
+
+            pointBackgroundColor: (ctx) => {
+              const index = ctx.dataIndex;
+              const data = ctx.dataset.data;
+
+              const reversedIdx = data.slice().reverse().findIndex(v => v !== null);
+              const lastIndex = reversedIdx === -1 ? -1 : data.length - 1 - reversedIdx;
+
+              return index === lastIndex ? "#635bff" : "transparent";
+            },
+
+            pointBorderColor: (ctx) => {
+              const index = ctx.dataIndex;
+              const data = ctx.dataset.data;
+
+              const reversedIdx = data.slice().reverse().findIndex(v => v !== null);
+              const lastIndex = reversedIdx === -1 ? -1 : data.length - 1 - reversedIdx;
+
+              return index === lastIndex ? "#635bff" : "transparent";
+            },
             pointHitRadius: 10, // required for dragging detection
             pointHoverRadius: 4,
             pointHoverBackgroundColor: "#635bff",
