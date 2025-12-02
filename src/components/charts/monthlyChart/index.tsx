@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Chart,
   LineController,
@@ -11,6 +11,7 @@ import {
   Filler,
 } from "chart.js";
 import dragData from "chartjs-plugin-dragdata";
+import { useHomeData } from "../../../context/HomeDataContext";
 import "./monthlyChart.scss";
 
 Chart.register(
@@ -42,17 +43,22 @@ const MonthlyGraph = () => {
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
 
-  const [dataArr, setDataArr] = useState([...initialData]);
+  const { data, updateMultiple } = useHomeData();
 
   const getDynamicMax = arr =>
     Math.ceil((Math.max(...arr) + 100) / 500) * 500;
 
-  // Create chart only once, direct reference
+  // Chart creation ONCE ONLY
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // Initial base data
+    const baseData = data?.monthlyChart?.length
+      ? data.monthlyChart
+      : [...initialData];
 
     chartRef.current = new Chart(ctx, {
       type: "line",
@@ -61,7 +67,7 @@ const MonthlyGraph = () => {
         datasets: [
           {
             label: "MonthlyLine",
-            data: dataArr, // << direct reference
+            data: baseData,
             borderColor: "#9966FF",
             borderWidth: 3,
             tension: 0,
@@ -78,42 +84,33 @@ const MonthlyGraph = () => {
         animation: { duration: 300 },
         interaction: {
           intersect: false,
-          mode: "nearest",
+          mode: "nearest"
         },
         plugins: {
           tooltip: {
             enabled: false,
-            external: function (context) {
+            external: function(context) {
               const tooltipEl = document.getElementById("monthly-tooltip");
               const tooltipModel = context.tooltip;
               if (!tooltipEl) return;
-
               if (tooltipModel.opacity === 0) {
                 tooltipEl.style.opacity = "0";
                 return;
               }
-
               if (tooltipModel.dataPoints && tooltipModel.dataPoints.length) {
                 const dataPoint = tooltipModel.dataPoints[0];
-
-                // Set content
                 tooltipEl.innerHTML = `
-                    <div class="tooltip-date">${dataPoint.label}</div>
-                    <div class="tooltip-value">$${dataPoint.raw.toLocaleString(undefined, {
+                  <div class="tooltip-date">${dataPoint.label}</div>
+                  <div class="tooltip-value">$${dataPoint.raw.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}</div>
-    `;
-
-                // Position tooltip relative to canvas
-                const canvasRect = context.chart.canvas.getBoundingClientRect();
-                const parentRect = context.chart.canvas.parentElement.getBoundingClientRect();
-
+                `;
                 tooltipEl.style.opacity = "1";
                 tooltipEl.style.left = `${dataPoint.element.x - tooltipEl.offsetWidth / 2}px`;
                 tooltipEl.style.top = `${dataPoint.element.y - tooltipEl.offsetHeight - 8}px`;
               }
-            },
+            }
           },
           dragData: {
             enabled: true,
@@ -121,7 +118,7 @@ const MonthlyGraph = () => {
             onDragEnd: (e, datasetIndex, index, value) => {
               const chart = chartRef.current;
               chart.data.datasets[datasetIndex].data[index] = value;
-              setDataArr([...chart.data.datasets[datasetIndex].data]);
+              updateMultiple({ monthlyChart: [...chart.data.datasets[datasetIndex].data] });
               chart.options.scales.y.max = getDynamicMax(chart.data.datasets[datasetIndex].data);
               chart.update();
             }
@@ -130,10 +127,9 @@ const MonthlyGraph = () => {
         scales: {
           y: {
             min: 0,
-            max: getDynamicMax(dataArr),
+            max: getDynamicMax(baseData),
             position: "right",
             ticks: {
-              // stepSize: 2000, // Remove stepSize for dynamic ticks
               maxTicksLimit: 6,
               callback: val => `$${(val / 1000).toFixed(2)}k`,
               color: "#6c7688"
@@ -144,62 +140,55 @@ const MonthlyGraph = () => {
           x: {
             display: true,
             ticks: {
-              callback: (val, index) => {
-                if (index === 11) return labels[11]; // Nov12
-                if (index === 22) return labels[22]; // Nov23
-                return "";
-              },
+              callback: (val, idx) =>
+                idx === 11 ? labels[11] : idx === 22 ? labels[22] : "",
               color: "#6c7688",
               autoSkip: false,
-              maxRotation: 0, // keep horizontal
-              minRotation: 0,
+              maxRotation: 0,
+              minRotation: 0
             },
             grid: {
               drawTicks: false,
               drawOnChartArea: false,
               drawBorder: true,
-              color: "#f2f3f4",
-            },
-          },
-        },
+              color: "#f2f3f4"
+            }
+          }
+        }
       },
       plugins: [{
-        // Plugin that draws vertical lines from x tick to first y grid line
         beforeDraw: function(chart) {
           const ctx = chart.ctx;
           const xAxis = chart.scales.x;
           const yAxis = chart.scales.y;
-
-          // Find pixel position of the bottom grid line (first tick on Y axis)
           const yPixel = yAxis.getPixelForValue(yAxis.min);
           [11, 22].forEach(idx => {
             const xPixel = xAxis.getPixelForValue(chart.data.labels[idx]);
             ctx.save();
             ctx.beginPath();
-            ctx.strokeStyle = "#6c7688"; // tick color
-            ctx.lineWidth = 1; // tick thickness
-            // Draw a vertical line from bottom to grid line
-            ctx.moveTo(xPixel, xAxis.bottom - 15); // Bottom of chart area
-            ctx.lineTo(xPixel, yPixel); // Up to first grid line
+            ctx.strokeStyle = "#6c7688";
+            ctx.lineWidth = 1;
+            ctx.moveTo(xPixel, xAxis.bottom - 15);
+            ctx.lineTo(xPixel, yPixel);
             ctx.stroke();
             ctx.restore();
           });
         }
-      }],
+      }]
     });
 
     return () => chartRef.current?.destroy();
-  }, []);
+  }, []); // <-- empty array means chart is created ONCE!
 
-  // Update chart axis and data in-place, sync React state
+  // Update chart only, never recreate! (on context data change)
   useEffect(() => {
     const chart = chartRef.current;
     if (!chart) return;
-    // Point to updated dataArr reference
-    chart.data.datasets[0].data = dataArr;
-    chart.options.scales.y.max = getDynamicMax(dataArr);
+    const arr = data?.monthlyChart?.length ? data.monthlyChart : initialData;
+    chart.data.datasets[0].data = arr;
+    chart.options.scales.y.max = getDynamicMax(arr);
     chart.update();
-  }, [dataArr]);
+  }, [data.monthlyChart]); // This only updates chart DATA, not recreates the chart
 
   return (
     <>
